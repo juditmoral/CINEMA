@@ -41,4 +41,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected $table ="funcions";
+
+    public function entrada(){
+
+        return $this->hasMany(Entrades::class);
+  
+    }
 }

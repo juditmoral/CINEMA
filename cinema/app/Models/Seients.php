@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Seients extends Model
 {
     use HasFactory;
+
+    protected $table ="seient";
+
+    public function entrada(){
+
+        return $this->hasMany(Entrades::class);
+  
+    }
 }
