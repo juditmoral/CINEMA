@@ -43,8 +43,6 @@ class User extends Authenticatable
     ];
 
 
-    protected $table ="funcions";
-
     public function entrada(){
 
         return $this->hasMany(Entrades::class);
