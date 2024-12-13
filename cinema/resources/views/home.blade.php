@@ -1,14 +1,8 @@
 <x-guest-layout>
-    <div class="py-5">
-        <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <h2 class="front-semibold txt-xl text-gray-800 leading-tight">
-                {{ __('Home page') }}
-            </h2>
-            <section>
-                <p>
-                    hdhgdgdhdhhhehe
-                </p>
-            </section>
-        </div>
+    <div class="bg-red-500 w-full h-80 sticky top-0 flex justify-center items-center mt-0">
+        <h2 class="text-white font-bold text-5xl">
+            Films
+        </h2>
     </div>
+    
 </x-guest-layout>
