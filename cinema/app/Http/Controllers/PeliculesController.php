@@ -15,6 +15,10 @@ class PeliculesController extends Controller
     public function index()
     {
         //
+        $pelicules = Pelicules::all();
+    
+        // Pasar las películas a la vista
+        return view('', compact('pelicules'));
     }
 
     /**
@@ -44,9 +48,19 @@ class PeliculesController extends Controller
      * @param  \App\Models\Pelicules  $pelicules
      * @return \Illuminate\Http\Response
      */
-    public function show(Pelicules $pelicules)
-    {
+    //public function show(Pelicules $pelicules)
+    //{
         //
+    //}
+
+
+    public function show($id)
+    {
+        // Busca la pel·lícula per ID
+        $pelicula = Pelicules::findOrFail($id);
+
+        // Retorna la vista amb la pel·lícula
+        return view('infofilms', compact('pelicula'));
     }
 
     /**

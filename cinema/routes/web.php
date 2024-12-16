@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PeliculesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $peliculas = App\Models\Pelicules::all();
+
+    // Passa las películas a la vista home
+    return view('home', compact('peliculas'));
+   
 });
 
 Route::get('/dashboard', function () {
@@ -30,6 +35,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/lang/{idioma}', 'App\Http\Controllers\LocalizationController@index')
     ->where('idioma', 'ca|en|es|fr');
+
+Route::get('/infofilms/{id}', [PeliculesController::class, 'show'])->name('infofilms');
+
 
 
 require __DIR__.'/auth.php';

@@ -1,4 +1,4 @@
-<footer class="w-screen h-20 bg-gray-700 text-white text-center py-3 fixed bottom-0">
+<footer class="w-screen h-20 bg-black text-white text-center py-3 fixed bottom-0">
   <div class="">
     Web ideat i desenvolupat per estudiants del
     <a href="http://multimedia.uvic.cat/" target="_blank">
