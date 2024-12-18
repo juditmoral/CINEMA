@@ -1,3 +1,6 @@
+@php
+ $locale=App::currentLocale();   
+@endphp
 <x-guest-layout>
     <!-- Navegació -->
     <div class="absolute top-0 left-0 w-full z-20">
@@ -23,11 +26,11 @@
             <!-- Carta per a cada pel·lícula -->
             <a href="{{ route('infofilms', ['id' => $pelicula->id]) }}" class="relative overflow-hidden rounded-lg shadow-lg h-[350px] w-[250px] group transition-all">
                 <!-- Imatge principal -->
-                <img src="{{ $pelicula->url }}" alt="Poster {{ $pelicula->titul_en }}"
+                <img src="{{ $pelicula->url }}" alt="Poster {{ $pelicula->('titul_'.$locale) }}"
                      class="w-full h-full object-cover transition-all duration-300">
                 <!-- Capa de text que apareix al fer hover -->
                 <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <h3 class="text-white text-xl font-bold text-center px-2">{{ $pelicula->titul_en }}</h3>
+                    <h3 class="text-white text-xl font-bold text-center px-2">{{ $pelicula->('titul_'.$locale)}}</h3>
                 </div>
             </a>
         @endforeach
