@@ -36,13 +36,13 @@ class DatabaseSeeder extends Seeder
         DB::table('pelicules')->insert([
             'duracio' => 120,
             'titul_es' => 'Origen',
-            'titul_cat' => 'Origen',
+            'titul_ca' => 'Origen',
             'titul_en' => 'Inception',
             'genere_es' => 'Ciencia Ficción',
-            'genere_cat' => 'Ciencia Ficció',
+            'genere_ca' => 'Ciencia Ficció',
             'genere_en' => 'Science Fiction',
             'descripció_es' => 'Un grupo de expertos entra en sueños para robar secretos.',
-            'descripció_cat' => 'Un grup d’experts entren als somnis per robar secrets.',
+            'descripció_ca' => 'Un grup d’experts entren als somnis per robar secrets.',
             'descripció_en' => 'A group of experts enters dreams to steal secrets.',
             'url' => 'https://pics.filmaffinity.com/Origen-652954101-large.jpg'
         ]);
@@ -50,13 +50,13 @@ class DatabaseSeeder extends Seeder
         DB::table('pelicules')->insert([
             'duracio' => 95,
             'titul_es' => 'Del Revés',
-            'titul_cat' => 'Del Revés',
+            'titul_ca' => 'Del Revés',
             'titul_en' => 'Inside Out',
             'genere_es' => 'Animación',
-            'genere_cat' => 'Animació',
+            'genere_ca' => 'Animació',
             'genere_en' => 'Animation',
             'descripció_es' => 'Exploración de las emociones de una niña a través de sus personajes internos.',
-            'descripció_cat' => 'Exploració de les emocions d’una nena mitjançant els seus personatges interns.',
+            'descripció_ca' => 'Exploració de les emocions d’una nena mitjançant els seus personatges interns.',
             'descripció_en' => 'Exploration of a girl’s emotions through her inner characters.',
             'url' => 'https://pics.filmaffinity.com/Del_revaes_Inside_Out-161470323-large.jpg'
         ]);
@@ -64,13 +64,13 @@ class DatabaseSeeder extends Seeder
         DB::table('pelicules')->insert([
             'duracio' => 143,
             'titul_es' => 'Salvar al Soldado Ryan',
-            'titul_cat' => 'Salvar al Soldat Ryan',
+            'titul_ca' => 'Salvar al Soldat Ryan',
             'titul_en' => 'Saving Private Ryan',
             'genere_es' => 'Bélico',
-            'genere_cat' => 'Bèlic',
+            'genere_ca' => 'Bèlic',
             'genere_en' => 'War',
             'descripció_es' => 'Una misión para rescatar a un soldado durante la Segunda Guerra Mundial.',
-            'descripció_cat' => 'Una missió per rescatar un soldat durant la Segona Guerra Mundial.',
+            'descripció_ca' => 'Una missió per rescatar un soldat durant la Segona Guerra Mundial.',
             'descripció_en' => 'A mission to rescue a soldier during World War II.',
             'url' => 'https://www.justwatch.com/images/poster/321632686/s332/saving-private-ryan'
         ]);
@@ -80,6 +80,7 @@ class DatabaseSeeder extends Seeder
         //FUNCIONS
 
         DB::table('funcions')->insert(['data' => '2024-12-01','hora' => '18:30:00','numSala' => '1','pelicula_id' => 1]);
+        DB::table('funcions')->insert(['data' => '2024-03-10','hora' => '20:30:00','numSala' => '1','pelicula_id' => 1]);
         DB::table('funcions')->insert(['data' => '2024-12-02','hora' => '20:00:00','numSala' => '3','pelicula_id' => 2]);
         DB::table('funcions')->insert(['data' => '2024-12-03','hora' => '19:15:00','numSala' => '2','pelicula_id' => 3]);
 

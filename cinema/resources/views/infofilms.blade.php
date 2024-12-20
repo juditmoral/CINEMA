@@ -1,6 +1,7 @@
 @php
  $locale=App::currentLocale();   
 @endphp
+
 <x-guest-layout>
     <!-- Navegació -->
     <div class="absolute top-0 left-0 w-full z-20">
