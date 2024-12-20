@@ -47,29 +47,32 @@
 
                     // Si existe la función, parsear la fecha
                     if ($funcio) {
-                        $fecha = \Carbon\Carbon::parse($funcio->data);
+                        $data = \Carbon\Carbon::parse($funcio->data);
                     } else {
-                        $fecha = null;
+                        $data = null;
                     }
                 @endphp
 
-                @if ($fecha)
+                @if ($data)
                     <!-- Día de la semana -->
-                    <h3 class="text-white font-bold text-xl mb-2">
-                        {{ $fecha->locale('es')->dayName }}
-                    </h3>
-
-                    <!-- Número del día -->
-                    <h2 class="text-white font-extrabold text-4xl mb-2">
-                        {{ $fecha->day }}
-                    </h2>
-
-                    <!-- Mes -->
-                    <h3 class="text-white font-bold text-xl">
-                        {{ $fecha->locale('es')->translatedFormat('F') }}
-                    </h3>
+                    <div class="flex flex-col items-center text-center">
+                        <!-- Día de la semana -->
+                        <h3 class="text-white font-bold text-lg mb-1">
+                            {{ ucfirst($data->locale($locale)->dayName) }}
+                        </h3>
+                    
+                        <!-- Número del día -->
+                        <h2 class="text-white font-extrabold text-5xl mb-1">
+                            {{ $data->day }}
+                        </h2>
+                    
+                        <!-- Mes -->
+                        <h3 class="text-gray-400 text-base">
+                            {{ ucfirst($data->locale($locale)->translatedFormat('F')) }}
+                        </h3>
+                    </div>
                 @else
-                    <p class="text-gray-400">No hay funciones programadas para esta película.</p>
+                    <p class="text-gray-400">{{__("No hi han funcions programades")}}</p>
                 @endif
             </div>
         </div>
