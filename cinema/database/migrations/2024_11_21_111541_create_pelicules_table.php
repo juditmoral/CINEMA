@@ -25,6 +25,11 @@ return new class extends Migration
             $table->string('descripció_es');
             $table->string('descripció_ca');
             $table->string('descripció_en');
+            $table->string('pais_es');
+            $table->string('pais_ca');
+            $table->string('pais_en');
+            $table->string('data');
+            $table->string('director');
             $table->string("url");
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

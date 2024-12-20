@@ -37,8 +37,9 @@
         <div class="flex">
 
             <!-- Imagen de la cartelera -->
-            <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->titul_en }}"
+            <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_'. $locale} }}"
                 class="w-1/4 h-auto object-cover rounded-lg mr-8">
+
 
             <!-- Información de las funciones -->
             <div class="flex w-full justify-start gap-0">
@@ -94,15 +95,49 @@
                                     <div class="w-full h-[1px] bg-gray-500"></div>
                                 @endforeach
                             </div>
+                           
                         </div>
-                        
-                        
-                        
                     @endforeach
                 @else
                     <p class="text-gray-400">{{__("No hi han funcions programades")}}</p>
                 @endif
             </div>
+
         </div>
+
+        <!-- Contenedor para el botón de "Comprar" centrado justo debajo de la imagen del cartel -->
+        <div class="flex justify-left mt-6">
+            <button class="bg-white text-gray-600 font-bold py-2 px-6 rounded-md shadow-md hover:bg-gray-100">
+                {{ __("Comprar") }}
+            </button>
+        </div>
+
+        <!-- Sección Detalles y Sinopsis con la línea -->
+        <div class="mt-20">
+            <!-- Texto Detalles a la izquierda y Sinopsis a la derecha -->
+            <div class="flex justify-between items-center">
+                <p class="text-white text-2xl font-semibold">{{ __("Detalls") }}</p>
+                <p class="text-white text-2xl font-semibold text-center flex-1">{{ __("Sinopsi") }}</p>
+            </div>
+
+            <!-- Línea de degradado rojo a negro -->
+            <div class="w-full h-[2px] bg-gradient-to-r from-red-600 to-black mt-4 mb-8"></div>
+
+            <div class="flex justify-between">
+                <!-- Parte izquierda: Pais, Data, Director -->
+                <div class="w-1/3">
+                    <p class="text-white text-1xl font-semibold">{{ __("PAIS") }}: {{ $pelicula->{'pais_' .$locale} }}</p>
+                    <p class="text-white text-1xl font-semibold">{{ __("DATA") }}: {{ $pelicula->data }}</p>
+                    <p class="text-white text-1xl font-semibold">{{ __("DIRECTOR") }}: {{ $pelicula->director }}</p>
+                </div>
+
+                <!-- Parte derecha: Descripción de la película -->
+                <div class="w-2/3">
+                    <p class="text-white text-1xl text-center">{{ $pelicula->{'descripció_'.$locale} }}</p>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </x-guest-layout>

@@ -44,6 +44,11 @@ class DatabaseSeeder extends Seeder
             'descripció_es' => 'Un grupo de expertos entra en sueños para robar secretos.',
             'descripció_ca' => 'Un grup d’experts entren als somnis per robar secrets.',
             'descripció_en' => 'A group of experts enters dreams to steal secrets.',
+            'pais_es'=> 'USA',
+            'pais_ca'=> 'USA',
+            'pais_en'=> 'USA',
+            'data'=> '2010',
+            'director'=>'Christopher Nolan',
             'url' => 'https://pics.filmaffinity.com/Origen-652954101-large.jpg'
         ]);
 
@@ -58,6 +63,11 @@ class DatabaseSeeder extends Seeder
             'descripció_es' => 'Exploración de las emociones de una niña a través de sus personajes internos.',
             'descripció_ca' => 'Exploració de les emocions d’una nena mitjançant els seus personatges interns.',
             'descripció_en' => 'Exploration of a girl’s emotions through her inner characters.',
+            'pais_es'=> 'USA',
+            'pais_ca'=> 'USA',
+            'pais_en'=> 'USA',
+            'data'=> '2015',
+            'director'=>'Pete Docter',
             'url' => 'https://pics.filmaffinity.com/Del_revaes_Inside_Out-161470323-large.jpg'
         ]);
 
@@ -72,7 +82,12 @@ class DatabaseSeeder extends Seeder
             'descripció_es' => 'Una misión para rescatar a un soldado durante la Segunda Guerra Mundial.',
             'descripció_ca' => 'Una missió per rescatar un soldat durant la Segona Guerra Mundial.',
             'descripció_en' => 'A mission to rescue a soldier during World War II.',
-            'url' => 'https://es.web.img3.acsta.net/pictures/14/03/05/09/42/163621.jpg'
+            'pais_es'=> 'USA',
+            'pais_ca'=> 'USA',
+            'pais_en'=> 'USA',
+            'data'=> '1998',
+            'director'=>'Steven Spielberg',
+            'url' => 'https://image.tmdb.org/t/p/original/AdpcyHDrwxUuBi6OCSvNbAmRLKK.jpg'
         ]);
 
 
