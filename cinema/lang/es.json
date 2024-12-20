@@ -1,5 +1,22 @@
 {
  "Cartellera":"Cartelera",
- "Totes":"Todas"
+ "Totes":"Todas",
+ "Acció":"Acción",
+ "Animació":"Animación",
+ "Aventura":"Aventura",
+ "Bèlic":"Bélico",
+ "Ciencia Ficció":"Ciencia Ficción",
+ "Biogràfic":"Biográfico",
+ "Comèdia":"Comedia",
+ "Documental":"Documental",
+ "Drama":"Drama",
+ "Thriller":"Thriller",
+ "Terror":"Terror",
+ "Registrar-se":"Registrarse",
+ "Perfil":"Perfil",
+ "Sortir":"Salir",
+ "Benvinguts al cinema Stella! Gaudiu de les millors pel·lícules.":"¡Bienvenidos al cine Stella! Disfrute de las mejores películas.",
+ "Gènere":"Género",
+ "Duració":"Duración"
 
 }

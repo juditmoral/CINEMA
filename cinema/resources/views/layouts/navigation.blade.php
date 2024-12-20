@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-red-500 transition">
-                        {{ __('Dashboard') }}
+                        {{ __('Registrar-se') }}
                     </x-nav-link>
                 </div>
 
@@ -59,12 +59,12 @@
                         </x-slot>
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')" class="text-white hover:text-red-500 transition">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')" class="text-white hover:text-red-500 transition" onclick="event.preventDefault(); this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Sortir') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -88,7 +88,7 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-red-500 transition">
-                {{ __('Dashboard') }}
+                {{ __('Registrar-se') }}
             </x-responsive-nav-link>
         </div>
     </div>

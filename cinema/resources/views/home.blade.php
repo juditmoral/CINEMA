@@ -59,13 +59,14 @@
 
 <div id="peliculasContainer" class="max-w-7xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 justify-center my-8">
     @foreach ($peliculas as $pelicula)
-        <div class="pelicula-card relative overflow-hidden rounded-lg shadow-lg h-[350px] w-[250px] group transition-all">
+        <div class="pelicula-card relative overflow-hidden rounded-lg shadow-lg h-[350px] w-[250px] group transition-all" 
+             data-categoria="{{ $pelicula->{'genere_' . $locale} }}">
             <a href="{{ route('infofilms', ['id' => $pelicula->id]) }}" class="block w-full h-full overflow-hidden">
-                <!-- Imagen principal -->
+                <!-- Imatge principal -->
                 <img src="{{ $pelicula->url }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                      class="w-full h-full object-cover transition-all duration-300">
                 
-                <!-- Capa con texto que aparece al hacer hover -->
+                <!-- Capa amb text que apareix al fer hover -->
                 <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <h3 class="text-white text-xl font-bold text-center px-2">{{ $pelicula->{'titul_' . $locale} }}</h3>
                 </div>
@@ -73,6 +74,8 @@
         </div>
     @endforeach
 </div>
+
+
 
 </x-guest-layout>
 
