@@ -33,45 +33,72 @@
             <strong>{{__("Duració")}}:</strong> {{ $pelicula->duracio }} min
         </p>
 
-        <!-- Sección con la imagen y la fecha -->
+        <!-- Sección con la imagen y las funciones -->
         <div class="flex">
 
             <!-- Imagen de la cartelera -->
             <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->titul_en }}"
-                class="w-1/3 h-auto object-cover rounded-lg mr-8">
+                class="w-1/4 h-auto object-cover rounded-lg mr-8">
 
-            <!-- Información de la fecha -->
-            <div class="flex flex-col text-left">
+            <!-- Información de las funciones -->
+            <div class="flex w-full justify-start gap-0">
                 @php
-                    // Buscar la función de la película
-                    $funcio = \App\Models\Funcions::where('pelicula_id', $pelicula->id)->first();
-
-                    // Si existe la función, parsear la fecha
-                    if ($funcio) {
-                        $data = \Carbon\Carbon::parse($funcio->data);
-                    } else {
-                        $data = null;
-                    }
+                    // Buscar todas las funciones de la película
+                    $funcions = \App\Models\Funcions::where('pelicula_id', $pelicula->id)->get();
                 @endphp
 
-                @if ($data)
-                    <!-- Día de la semana -->
-                    <div class="flex flex-col items-center text-center">
-                        <!-- Día de la semana -->
-                        <h3 class="text-white font-bold text-lg mb-1">
-                            {{ ucfirst($data->locale($locale)->dayName) }}
-                        </h3>
-                    
-                        <!-- Número del día -->
-                        <h2 class="text-white font-extrabold text-5xl mb-1">
-                            {{ $data->day }}
-                        </h2>
-                    
-                        <!-- Mes -->
-                        <h3 class="text-gray-400 text-base">
-                            {{ ucfirst($data->locale($locale)->translatedFormat('F')) }}
-                        </h3>
-                    </div>
+                @if ($funcions->isNotEmpty())
+                    @foreach ($funcions as $funcio)
+                        @php
+                            $data = \Carbon\Carbon::parse($funcio->data);
+                            // Separar las horas en un array
+                            $hores = explode(',', $funcio->hora); 
+                        @endphp
+
+                        <!-- Caja para cada función -->
+                        <div class="flex flex-col items-center text-center w-1/4 last:mr-0 mb-8" x-data="{ selectedHour: null }">
+                            <!-- Día de la semana -->
+                            <h3 class="text-white font-bold text-lg mb-1">
+                                {{ ucfirst($data->locale($locale)->dayName) }}
+                            </h3>
+                        
+                            <!-- Número del día -->
+                            <h2 class="text-white font-extrabold text-5xl mb-1">
+                                {{ $data->day }}
+                            </h2>
+                        
+                            <!-- Mes -->
+                            <h3 class="text-gray-400 text-base mb-1">
+                                {{ ucfirst($data->locale($locale)->translatedFormat('F')) }}
+                            </h3>
+                        
+                            <!-- Línea blanca que se oculta dependiendo de la selección -->
+                            <div x-bind:style="selectedHour ? 'visibility: hidden;' : 'visibility: visible;'" class="w-full h-[2px] bg-white mt-1"></div>
+                        
+                            <!-- Botones de hora con espacio lateral entre ellos -->
+                            <div class="flex flex-col gap-3 mt-3 w-full mb-3">
+                                @foreach ($hores as $hora)
+                                    <div class="w-full">
+                                        <!-- Botón de hora con color dinámico según si está seleccionado o no -->
+                                        <button @click="selectedHour = selectedHour === '{{ $hora }}' ? null : '{{ $hora }}'"
+                                                :class="{
+                                                    'bg-red-500 text-white': selectedHour === '{{ $hora }}', 
+                                                    'bg-white text-gray-600': selectedHour !== '{{ $hora }}'
+                                                }"
+                                                class="font-bold py-2 w-20 rounded-md">
+                                            {{ $hora }}
+                                        </button>
+                                    </div>
+                        
+                                    <!-- Línea gris de separación debajo de cada botón -->
+                                    <div class="w-full h-[1px] bg-gray-500"></div>
+                                @endforeach
+                            </div>
+                        </div>
+                        
+                        
+                        
+                    @endforeach
                 @else
                     <p class="text-gray-400">{{__("No hi han funcions programades")}}</p>
                 @endif
@@ -79,5 +106,3 @@
         </div>
     </div>
 </x-guest-layout>
-
-

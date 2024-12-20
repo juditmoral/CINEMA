@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('funcions', function (Blueprint $table) {
             $table->id();
             $table->date('data');
-            $table->time('hora');
+            $table->string('hora');
             $table->enum('numSala',['1','2','3','4','5','6']);
             
             $table->foreignId('pelicula_id')

@@ -72,15 +72,15 @@ class DatabaseSeeder extends Seeder
             'descripció_es' => 'Una misión para rescatar a un soldado durante la Segunda Guerra Mundial.',
             'descripció_ca' => 'Una missió per rescatar un soldat durant la Segona Guerra Mundial.',
             'descripció_en' => 'A mission to rescue a soldier during World War II.',
-            'url' => 'https://www.justwatch.com/images/poster/321632686/s332/saving-private-ryan'
+            'url' => 'https://es.web.img3.acsta.net/pictures/14/03/05/09/42/163621.jpg'
         ]);
 
 
 
         //FUNCIONS
 
-        DB::table('funcions')->insert(['data' => '2024-12-01','hora' => '18:30:00','numSala' => '1','pelicula_id' => 1]);
-        DB::table('funcions')->insert(['data' => '2024-03-10','hora' => '20:30:00','numSala' => '1','pelicula_id' => 1]);
+        DB::table('funcions')->insert(['data' => '2024-12-01','hora' => '18:30,20:00','numSala' => '1','pelicula_id' => 1]);
+        DB::table('funcions')->insert(['data' => '2024-12-02','hora' => '18:30,21:00','numSala' => '1','pelicula_id' => 1]);
         DB::table('funcions')->insert(['data' => '2024-12-02','hora' => '20:00:00','numSala' => '3','pelicula_id' => 2]);
         DB::table('funcions')->insert(['data' => '2024-12-03','hora' => '19:15:00','numSala' => '2','pelicula_id' => 3]);
 
