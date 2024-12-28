@@ -40,4 +40,6 @@ Route::get('/infofilms/{id}', [PeliculesController::class, 'show'])->name('infof
 
 
 
+
+
 require __DIR__.'/auth.php';

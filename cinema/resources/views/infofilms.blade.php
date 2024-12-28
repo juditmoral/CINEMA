@@ -124,18 +124,28 @@
             <div class="w-full h-[2px] bg-gradient-to-r from-red-600 to-black mt-4 mb-8"></div>
 
             <div class="flex justify-between">
-                <!-- Parte izquierda: Pais, Data, Director -->
+                <!-- Parte izquierda: País, Fecha, Director -->
                 <div class="w-1/3">
-                    <p class="text-white text-1xl font-semibold">{{ __("PAIS") }}: {{ $pelicula->{'pais_' .$locale} }}</p>
-                    <p class="text-white text-1xl font-semibold">{{ __("DATA") }}: {{ $pelicula->data }}</p>
-                    <p class="text-white text-1xl font-semibold">{{ __("DIRECTOR") }}: {{ $pelicula->director }}</p>
+                    <p class="text-white text-1xl font-semibold">
+                        {{ __("PAIS") }}: 
+                        <span class="ml-2 font-normal">{{ $pelicula->{'pais_' . $locale} }}</span>
+                    </p>
+                    <p class="text-white text-1xl font-semibold">
+                        {{ __("DATA") }}: 
+                        <span class="ml-2 font-normal">{{ $pelicula->data }}</span>
+                    </p>
+                    <p class="text-white text-1xl font-semibold">
+                        {{ __("DIRECTOR") }}: 
+                        <span class="ml-2 font-normal">{{ $pelicula->director }}</span>
+                    </p>
                 </div>
-
+            
                 <!-- Parte derecha: Descripción de la película -->
                 <div class="w-2/3">
-                    <p class="text-white text-1xl text-center">{{ $pelicula->{'descripció_'.$locale} }}</p>
+                    <p class="text-white text-1xl font-bold text-center">{{ $pelicula->{'descripció_' . $locale} }}</p>
                 </div>
             </div>
+            
 
         </div>
 

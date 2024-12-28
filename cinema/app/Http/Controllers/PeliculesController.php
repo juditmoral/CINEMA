@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelicules;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PeliculesController extends Controller
 {
@@ -16,7 +17,7 @@ class PeliculesController extends Controller
     {
         //
         $pelicules = Pelicules::all();
-    
+
         // Pasar las películas a la vista
         return view('', compact('pelicules'));
     }
@@ -50,7 +51,7 @@ class PeliculesController extends Controller
      */
     //public function show(Pelicules $pelicules)
     //{
-        //
+    //
     //}
 
 
@@ -96,4 +97,5 @@ class PeliculesController extends Controller
     {
         //
     }
+
 }
