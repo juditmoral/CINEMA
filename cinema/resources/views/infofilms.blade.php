@@ -82,17 +82,16 @@
                             <div class="flex flex-col gap-3 mt-3 w-full mb-3">
                                 @foreach ($hores as $hora)
                                     <div class="w-full">
-                                        <!-- Botón de hora con color dinámico según si está seleccionado o no -->
                                         <button
                                             class="hora-btn bg-white text-gray-600 font-bold py-2 w-20 rounded-md shadow-md"
-                                            data-hora="{{ $hora }}" data-dia="{{ $data->toDateString() }}">
+                                            data-hora="{{ $hora }}" data-dia="{{ $data->toDateString() }}"
+                                            data-funcio-id="{{ $funcio->id }}">
                                             {{ $hora }}
                                         </button>
                                     </div>
-
-                                    <!-- Línea gris de separación debajo de cada botón -->
                                     <div class="w-full h-[1px] bg-gray-500"></div>
                                 @endforeach
+
                             </div>
 
                         </div>
@@ -109,32 +108,45 @@
             <input type="hidden" name="id" id="pelicula-id" value="{{ $pelicula->id }}">
             <input type="hidden" name="hora" id="hora" value="">
             <input type="hidden" name="dia" id="dia" value="">
+            <input type="hidden" name="funcioId" id="funcio-id" value="">
         </form>
+
 
         <!-- Contenedor para el botón de "Comprar" centrado justo debajo de la imagen del cartel -->
         <div class="flex justify-left mt-6">
-            <button id="comprar-btn"
-                class="bg-white text-gray-600 font-bold py-2 px-6 rounded-md shadow-md hover:bg-gray-100">
-                {{ __('Comprar') }}
-            </button>
+
+
+            @auth
+                <button id="comprar-btn"
+                    class="bg-white text-gray-600 font-bold py-2 px-6 rounded-md shadow-md hover:bg-gray-100">
+                    {{ __('Comprar') }}
+                </button>
+            @else
+                <p class="text-red-600 font-bold">
+                    {{ __('Per poder comprar, has d\'iniciar sessió o registrar-te.') }}
+                </p>
+            @endauth
+
         </div>
 
         <script>
             document.querySelector('#comprar-btn').addEventListener('click', function() {
-                // Obtener los valores de hora y día desde sessionStorage
+                // Obtener los valores de hora, día y función desde sessionStorage
                 var hora = sessionStorage.getItem('hora');
                 var dia = sessionStorage.getItem('dia');
-        
+                var funcioId = sessionStorage.getItem('funcioId');
+
                 // Verificar que los valores están disponibles
-                if (hora && dia) {
-                    // Asignar los valores al formulario y enviarlo
+                if (hora && dia && funcioId) {
+                    // Asignar los valores al formulario
                     document.getElementById('hora').value = hora;
                     document.getElementById('dia').value = dia;
-        
+                    document.getElementById('funcio-id').value = funcioId;
+
                     // Enviar el formulario
                     document.getElementById('form-comprar').submit();
                 } else {
-                    // Si no se han seleccionado la hora y el día, mostrar un mensaje de error
+                    // Mostrar un mensaje de error si no hay selección
                     alert("Por favor, selecciona una hora y un día.");
                 }
             });
@@ -189,12 +201,15 @@
                 this.classList.add('bg-red-600', 'text-white');
                 this.classList.remove('bg-white', 'text-gray-600');
 
-                // Obtener la hora y el día
+                // Obtener la hora, día y ID de la función
                 var hora = this.getAttribute('data-hora');
                 var dia = this.getAttribute('data-dia');
+                var funcioId = this.getAttribute('data-funcio-id');
 
+                // Guardar en sessionStorage
                 sessionStorage.setItem('hora', hora);
                 sessionStorage.setItem('dia', dia);
+                sessionStorage.setItem('funcioId', funcioId);
             });
         });
     </script>

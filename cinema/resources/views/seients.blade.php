@@ -13,4 +13,8 @@
     <div class="mb-4">
         <strong>Día:</strong> {{ $dia }}
     </div>
+
+    <div class="mb-4">
+        <strong>ID funcio :</strong> {{ $funcioId}}
+    </div>
 </div>

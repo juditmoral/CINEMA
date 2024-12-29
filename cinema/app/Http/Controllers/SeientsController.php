@@ -89,8 +89,9 @@ class SeientsController extends Controller
         $peliculaId = $request->input('id');
         $hora = $request->input('hora');
         $dia = $request->input('dia');
+        $funcioId = $request->input('funcioId');
 
         // Pasar los datos a la vista 'seients'
-        return view('seients', compact('peliculaId', 'hora', 'dia'));
+        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId'));
     }
 }
