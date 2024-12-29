@@ -1,24 +1,3 @@
-<!-- Mostrar los datos recibidos -->
-<div class="container">
-    <h1 class="text-center text-xl font-semibold mb-4">Detalles de la Función</h1>
-
-    <div class="mb-4">
-        <strong>ID de la Película:</strong> {{ $peliculaId }}
-    </div>
-
-    <div class="mb-4">
-        <strong>Hora:</strong> {{ $hora }}
-    </div>
-
-    <div class="mb-4">
-        <strong>Día:</strong> {{ $dia }}
-    </div>
-
-    <div class="mb-4">
-        <strong>ID funcio :</strong> {{ $funcioId }}
-    </div>
-</div>
-
 
 @php
     $locale = App::currentLocale();
@@ -55,7 +34,7 @@
             <strong>{{ __('Duració') }}:</strong> {{ $pelicula->duracio }} min
         </p>
 
-        <!-- Sección con la imagen y los asientos -->
+
         <!-- Sección con la imagen y los asientos -->
         <div class="flex justify-between items-start w-full mt-8">
             <!-- Imagen de la cartelera -->
@@ -63,6 +42,8 @@
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-64 h-auto object-cover rounded-lg">
             </div>
+
+            
 
             <!-- Sección de los asientos -->
             <div class="w-2/3">
@@ -102,24 +83,45 @@
                     </div>
                 </div>
 
+    
+
+                <div class="w-full flex justify-center mb-6">
+                    <div
+                        class="w-3/4 h-32 bg-gray-800 text-white flex justify-center items-center text-2xl font-bold rounded-lg">
+                    </div>
+                </div>
+
                 <!-- Bloc dels seients -->
                 <div class="grid grid-cols-12 gap-1 items-center ml-5">
                     @foreach ($seients as $seient)
                         <div class="w-7 h-7 flex justify-center items-center border border-gray-500 rounded bg-gray-700 text-white cursor-pointer hover:bg-gray-500"
-                             data-fila="{{ $seient->fila }}">
+                            data-fila="{{ $seient->fila }}">
                             {{ $seient->numero }}
                         </div>
                     @endforeach
+
+                    
+                </div>
+
+                
+
+
+            </div>
+
+            <div class="flex justify-right mt-6 ml-20">
+                <!-- Mostramos el área con la hora y el día -->
+                <div class="flex flex-col items-start space-y-2">
+                    <div class="bg-gray-700 text-white font-bold text-lg py-2 px-4 rounded-lg">
+                        <strong>Hora:</strong> {{ $hora }}
+                    </div>
+                    <div class="bg-gray-700 text-white font-bold text-lg py-2 px-4 rounded-lg">
+                        <strong>Día:</strong> {{ $dia }}
+                    </div>
                 </div>
             </div>
         </div>
 
-
-
-
-
-
-
+        
     </div>
 
 
@@ -127,12 +129,8 @@
 
 
     <!-- Contenedor para los asientos seleccionados centrado justo debajo de la imagen del cartel y el boton continuar -->
-    <div class="flex justify-left mt-6">
 
 
-
-
-    </div>
 
 
 
@@ -144,6 +142,8 @@
 
 
     </div>
+
+
 
 
 
