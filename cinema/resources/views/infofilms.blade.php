@@ -103,7 +103,7 @@
 
         </div>
 
-        <form id="form-comprar" method="POST" action="{{ route('seients') }}" style="display:none;">
+        <form id="form-comprar" method="GET" action="{{ route('seients') }}" style="display:none;">
             @csrf
             <input type="hidden" name="id" id="pelicula-id" value="{{ $pelicula->id }}">
             <input type="hidden" name="hora" id="hora" value="">

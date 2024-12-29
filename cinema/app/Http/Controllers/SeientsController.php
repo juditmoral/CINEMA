@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelicules;
 use App\Models\Seients;
 use Illuminate\Http\Request;
 
@@ -90,8 +91,16 @@ class SeientsController extends Controller
         $hora = $request->input('hora');
         $dia = $request->input('dia');
         $funcioId = $request->input('funcioId');
+        $pelicula = Pelicules::find($peliculaId);
+        if (!$pelicula) {
+            return redirect()->back()->with('error', 'Pel·lícula no trobada.');
+        }
+
+        
 
         // Pasar los datos a la vista 'seients'
-        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId'));
+        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId','pelicula'));
     }
+
+    
 }

@@ -40,7 +40,7 @@ Route::get('/lang/{idioma}', 'App\Http\Controllers\LocalizationController@index'
 
 Route::get('/infofilms/{id}', [PeliculesController::class, 'show'])->name('infofilms');
 
-Route::post('/seients', [SeientsController::class, 'mostrarSeients'])->name('seients');
+Route::get('/seients', [SeientsController::class, 'mostrarSeients'])->name('seients');
 
 
 
