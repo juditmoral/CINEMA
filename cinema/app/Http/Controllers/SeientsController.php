@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entrades;
 use App\Models\Funcions;
 use App\Models\Pelicules;
 use App\Models\Seients;
@@ -99,6 +100,10 @@ class SeientsController extends Controller
 
         $seients = Seients::where('numSala', $sala)->get();
 
+        $llocsOcupats = Entrades::where('funcio_id', $funcioId)
+        ->pluck('seient_id')
+        ->toArray(); // Ens assegurem que és un array
+
 
         if (!$pelicula) {
             return redirect()->back()->with('error', 'Pel·lícula no trobada.');
@@ -107,7 +112,7 @@ class SeientsController extends Controller
         
 
         // Pasar los datos a la vista 'seients'
-        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId','pelicula','seients'));
+        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId','pelicula','seients','llocsOcupats'));
     }
 
     

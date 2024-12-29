@@ -59,7 +59,7 @@
                             class="w-8 h-8 bg-gray-500 text-white font-bold flex justify-center items-center rounded-full">
                             1
                         </div>
-                        <span class="ml-2 text-white font-medium">{{__("Escull el teu lloc")}}</span>
+                        <span class="ml-2 text-white font-medium">{{ __('Escull el teu lloc') }}</span>
                     </div>
 
                     <!-- Separador -->
@@ -71,7 +71,7 @@
                             class="w-8 h-8 bg-gray-200 text-gray-500 font-bold flex justify-center items-center rounded-full">
                             2
                         </div>
-                        <span class="ml-2 text-gray-500 font-medium">{{__("Pagament")}}</span>
+                        <span class="ml-2 text-gray-500 font-medium">{{ __('Pagament') }}</span>
                     </div>
 
                     <!-- Separador -->
@@ -83,7 +83,7 @@
                             class="w-8 h-8 bg-gray-200 text-gray-500 font-bold flex justify-center items-center rounded-full">
                             3
                         </div>
-                        <span class="ml-2 text-gray-500 font-medium">{{__("Tíquets")}}</span>
+                        <span class="ml-2 text-gray-500 font-medium">{{ __('Tíquets') }}</span>
                     </div>
                 </div>
 
@@ -98,8 +98,14 @@
                 <!-- Bloc dels seients -->
                 <div class="grid grid-cols-12 gap-1 items-center ml-5">
                     @foreach ($seients as $seient)
-                        <div class="w-7 h-7 flex justify-center items-center border border-gray-500 rounded bg-gray-700 text-white cursor-pointer hover:bg-gray-500"
-                            data-fila="{{ $seient->fila }}" data-numero="{{$seient->numero}}">
+                        @php
+                            // Comprova si el seient està ocupat comparant l'ID
+                            $ocupat = in_array($seient->id, $llocsOcupats);
+
+                        @endphp
+                        <div class="w-7 h-7 flex justify-center items-center border border-gray-500 rounded
+                            @if ($ocupat) bg-gray-400 cursor-not-allowed @else bg-gray-700 text-white hover:bg-gray-500 @endif"
+                            data-fila="{{ $seient->fila }}" data-numero="{{ $seient->numero }}">
                             
                         </div>
                     @endforeach
@@ -117,10 +123,10 @@
                 <div class="flex flex-col items-start space-y-2">
                     <!-- Día -->
                     <div class="text-gray-500 text-lg">
-                        <strong>{{__("Día")}}:</strong>
+                        <strong>{{ __('Día') }}:</strong>
                     </div>
 
-                   
+
 
                     <div
                         class=" text-white font-bold text-5xl py-2 px-4 rounded-lg text-center border-2 border-gray-700">
@@ -133,7 +139,7 @@
 
                     <!-- Hora -->
                     <div class="text-gray-500 text-lg mt-4">
-                        <strong>{{__("Hora")}}:</strong>
+                        <strong>{{ __('Hora') }}:</strong>
                     </div>
                     <div class=" text-white font-bold text-3xl py-2 rounded-lg text-center">
                         {{ $hora }}
