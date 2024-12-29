@@ -82,4 +82,15 @@ class SeientsController extends Controller
     {
         //
     }
+
+
+    public function mostrarSeients(Request $request)
+    {
+        $peliculaId = $request->input('id');
+        $hora = $request->input('hora');
+        $dia = $request->input('dia');
+
+        // Pasar los datos a la vista 'seients'
+        return view('seients', compact('peliculaId', 'hora', 'dia'));
+    }
 }

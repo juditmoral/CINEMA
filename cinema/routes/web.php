@@ -3,6 +3,8 @@
 use App\Http\Controllers\PeliculesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SeientsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,8 @@ Route::get('/lang/{idioma}', 'App\Http\Controllers\LocalizationController@index'
     ->where('idioma', 'ca|en|es|fr');
 
 Route::get('/infofilms/{id}', [PeliculesController::class, 'show'])->name('infofilms');
+
+Route::post('/seients', [SeientsController::class, 'mostrarSeients'])->name('seients');
 
 
 
