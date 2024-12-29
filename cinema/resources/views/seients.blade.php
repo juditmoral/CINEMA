@@ -99,8 +99,8 @@
                 <div class="grid grid-cols-12 gap-1 items-center ml-5">
                     @foreach ($seients as $seient)
                         <div class="w-7 h-7 flex justify-center items-center border border-gray-500 rounded bg-gray-700 text-white cursor-pointer hover:bg-gray-500"
-                            data-fila="{{ $seient->fila }}">
-                            {{ $seient->numero }}
+                            data-fila="{{ $seient->fila }}" data-numero="{{$seient->numero}}">
+                            
                         </div>
                     @endforeach
 
