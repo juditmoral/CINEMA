@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
 
         foreach (['1', '2', '3', '4', '5', '6'] as $numSala) { // 6 sales
             for ($fila = 1; $fila <= 10; $fila++) { // 10 files per sala
-                for ($numero = 1; $numero <= 15; $numero++) { // 15 seients per fila
+                for ($numero = 1; $numero <= 12; $numero++) { // 15 seients per fila
                     DB::table('seient')->insert([
                         'numero' => $numero,
                         'fila' => $fila,
