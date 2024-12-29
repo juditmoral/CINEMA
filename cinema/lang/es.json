@@ -25,6 +25,11 @@
  "PAIS":"PAÍS",
  "DATA":"FECHA",
  "DIRECTOR":"DIRECTOR",
- "Per poder comprar, has d'iniciar sessió o registrar-te.":"Para poder comprar, debes iniciar sesión o registrarte."
+ "Per poder comprar, has d'iniciar sessió o registrar-te.":"Para poder comprar, debes iniciar sesión o registrarte.",
+ "Escull el teu lloc":"Elije tu sitio",
+ "Pagament":"Pago",
+ "Tíquets":"Tickets",
+ "Día":"Día",
+ "Hora":"Hora"
 
 }

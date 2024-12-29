@@ -1,6 +1,10 @@
-
 @php
     $locale = App::currentLocale();
+    $locale = app()->getLocale();
+    \Carbon\Carbon::setLocale($locale);
+    $month = \Carbon\Carbon::parse($dia)->translatedFormat('M'); // Obtener el mes traducido
+    $month = ucfirst($month); // Asegurar que la primera letra esté en mayúscula
+    $month = rtrim($month, '.');
 @endphp
 
 <x-guest-layout>
@@ -43,19 +47,19 @@
                     class="w-64 h-auto object-cover rounded-lg">
             </div>
 
-            
+
 
             <!-- Sección de los asientos -->
             <div class="w-2/3">
                 <!-- Pasos numerados -->
                 <div class="flex items-start gap-6 mb-6">
                     <!-- Paso 1 -->
-                    <div class="flex items-center">
+                    <div class="flex items-center ml-5">
                         <div
                             class="w-8 h-8 bg-gray-500 text-white font-bold flex justify-center items-center rounded-full">
                             1
                         </div>
-                        <span class="ml-2 text-white font-medium">Escull el teu lloc</span>
+                        <span class="ml-2 text-white font-medium">{{__("Escull el teu lloc")}}</span>
                     </div>
 
                     <!-- Separador -->
@@ -67,7 +71,7 @@
                             class="w-8 h-8 bg-gray-200 text-gray-500 font-bold flex justify-center items-center rounded-full">
                             2
                         </div>
-                        <span class="ml-2 text-gray-500 font-medium">Pagament</span>
+                        <span class="ml-2 text-gray-500 font-medium">{{__("Pagament")}}</span>
                     </div>
 
                     <!-- Separador -->
@@ -79,11 +83,11 @@
                             class="w-8 h-8 bg-gray-200 text-gray-500 font-bold flex justify-center items-center rounded-full">
                             3
                         </div>
-                        <span class="ml-2 text-gray-500 font-medium">Tíquets</span>
+                        <span class="ml-2 text-gray-500 font-medium">{{__("Tíquets")}}</span>
                     </div>
                 </div>
 
-    
+
 
                 <div class="w-full flex justify-center mb-6">
                     <div
@@ -100,10 +104,10 @@
                         </div>
                     @endforeach
 
-                    
+
                 </div>
 
-                
+
 
 
             </div>
@@ -111,17 +115,34 @@
             <div class="flex justify-right mt-6 ml-20">
                 <!-- Mostramos el área con la hora y el día -->
                 <div class="flex flex-col items-start space-y-2">
-                    <div class="bg-gray-700 text-white font-bold text-lg py-2 px-4 rounded-lg">
-                        <strong>Hora:</strong> {{ $hora }}
+                    <!-- Día -->
+                    <div class="text-gray-500 text-lg">
+                        <strong>{{__("Día")}}:</strong>
                     </div>
-                    <div class="bg-gray-700 text-white font-bold text-lg py-2 px-4 rounded-lg">
-                        <strong>Día:</strong> {{ $dia }}
+
+                   
+
+                    <div
+                        class=" text-white font-bold text-5xl py-2 px-4 rounded-lg text-center border-2 border-gray-700">
+                        {{ \Carbon\Carbon::parse($dia)->day }}
+                    </div>
+                    <div
+                        class=" text-white font-medium text-sm py-1 px-4 rounded-lg text-center border-2 border-gray-700">
+                        {{ $month }} <!-- Mes en abreviatura -->
+                    </div>
+
+                    <!-- Hora -->
+                    <div class="text-gray-500 text-lg mt-4">
+                        <strong>{{__("Hora")}}:</strong>
+                    </div>
+                    <div class=" text-white font-bold text-3xl py-2 rounded-lg text-center">
+                        {{ $hora }}
                     </div>
                 </div>
             </div>
         </div>
 
-        
+
     </div>
 
 
