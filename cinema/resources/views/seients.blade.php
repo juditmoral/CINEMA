@@ -130,7 +130,8 @@
                         @endphp
                         <div class="w-7 h-7 flex justify-center items-center border border-gray-500 rounded
                             @if ($ocupat) bg-gray-400 cursor-not-allowed @else bg-gray-700 text-white hover:bg-gray-500 @endif"
-                            data-fila="{{ $seient->fila }}" data-numero="{{ $seient->numero }}" data-id="{{$seient->id }}">
+                            data-fila="{{ $seient->fila }}" data-numero="{{ $seient->numero }}"
+                            data-id="{{ $seient->id }}">
 
                         </div>
                     @endforeach
@@ -143,47 +144,61 @@
                     document.addEventListener('DOMContentLoaded', () => {
                         const seats = document.querySelectorAll('.grid div'); // Selecciona tots els seients
                         let selectedSeats = []; // Array per guardar els seients seleccionats
-                
+                        const pricePerSeat = 5; // Preu per seient
+
                         // Afegir esdeveniment al click dels seients
                         seats.forEach(seat => {
                             seat.addEventListener('click', () => {
                                 if (!seat.classList.contains('cursor-not-allowed')) { // Evitar seients ocupats
-                                    seat.classList.toggle('bg-red-500'); // Canviar el color del seient seleccionat
-                                    seat.classList.toggle('bg-gray-700'); // Tornar al color original si es deselecciona
-                
+                                    seat.classList.toggle(
+                                    'bg-red-500'); // Canviar el color del seient seleccionat
+                                    seat.classList.toggle(
+                                    'bg-gray-700'); // Tornar al color original si es deselecciona
+
                                     // Si el seient està seleccionat, afegir-lo a la llista
                                     const seatData = {
                                         id: seat.getAttribute('data-id'), // ID del seient
                                         fila: seat.getAttribute('data-fila'),
                                         numero: seat.getAttribute('data-numero')
                                     };
-                
+
                                     if (seat.classList.contains('bg-red-500')) {
                                         selectedSeats.push(seatData); // Afegir a la llista
                                     } else {
                                         // Eliminar el seient deseleccionat
                                         selectedSeats = selectedSeats.filter(s => s.id !== seatData.id);
                                     }
+
+                                    // Actualitzar el total a pagar
+                                    updateTotalToPay();
                                 }
                             });
                         });
-                
+
+                        // Funció per actualitzar el total a pagar
+                        function updateTotalToPay() {
+                            const total = selectedSeats.length * pricePerSeat;
+                            document.getElementById('totalToPay').textContent =
+                            `${total} €`; // Mostrar el total en el format correcte
+                        }
+
                         // Acció al pressionar el botó "Continuar"
-                        document.getElementById('continuarButton').addEventListener('click', () => {
+                        document.getElementById('continuarButton').addEventListener('click', (event) => {
                             if (selectedSeats.length > 0) {
                                 // Afegir la informació dels seients seleccionats al formulari com a camps ocults
                                 const seatsInput = document.getElementById('seatsInput');
                                 seatsInput.value = JSON.stringify(selectedSeats); // Convertir la llista a cadena JSON
-                
+
                                 // Submetre el formulari
                                 document.getElementById('seatsForm').submit();
                             } else {
-                                alert('Si us plau, selecciona alguns seients abans de continuar.');
+                                event.preventDefault();
+                                
                             }
                         });
                     });
                 </script>
-                
+
 
 
 
@@ -216,6 +231,14 @@
                     </div>
                     <div class=" text-white font-bold text-3xl py-2 rounded-lg text-center">
                         {{ $hora }}
+                    </div>
+
+                    <!-- Total a pagar -->
+                    <div class="text-gray-500 text-lg mt-4">
+                        <strong>{{ __('Total') }}:</strong>
+                    </div>
+                    <div id="totalToPay" class="text-white font-bold text-3xl py-2 rounded-lg text-center">
+                        0 €
                     </div>
                 </div>
             </div>
