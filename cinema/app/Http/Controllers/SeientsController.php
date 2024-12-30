@@ -112,7 +112,7 @@ class SeientsController extends Controller
 
 
         // Pasar los datos a la vista 'seients'
-        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId', 'pelicula', 'seients', 'llocsOcupats','sala','funcio'));
+        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId', 'pelicula', 'seients', 'llocsOcupats', 'sala', 'funcio'));
     }
 
 
@@ -124,14 +124,14 @@ class SeientsController extends Controller
     {
         // Recuperar la informació dels seients seleccionats
         $selectedSeats = json_decode($request->input('seats'), true);
-    
+
         // Recuperar el dia, hora, sala, funció i pel·lícula
         $dia = $request->input('dia');
         $hora = $request->input('hora');
         $sala = $request->input('sala');
         $funcio_id = $request->input('funcioId');
         $pelicula_id = $request->input('peliculaId');
-    
+
         // Passar la informació a la vista
         return view('compra', [
             'selectedSeats' => $selectedSeats,
@@ -141,9 +141,5 @@ class SeientsController extends Controller
             'funcio_id' => $funcio_id,
             'pelicula_id' => $pelicula_id
         ]);
-
-
     }
-    
-
 }
