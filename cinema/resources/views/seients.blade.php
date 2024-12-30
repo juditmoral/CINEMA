@@ -45,6 +45,11 @@
             <div class="mr-8">
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-64 h-auto object-cover rounded-lg">
+
+                <button
+                    class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    {{ __('Continuar') }}
+                </button>
             </div>
 
 
@@ -106,12 +111,29 @@
                         <div class="w-7 h-7 flex justify-center items-center border border-gray-500 rounded
                             @if ($ocupat) bg-gray-400 cursor-not-allowed @else bg-gray-700 text-white hover:bg-gray-500 @endif"
                             data-fila="{{ $seient->fila }}" data-numero="{{ $seient->numero }}">
-                            
+
                         </div>
                     @endforeach
 
 
                 </div>
+
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const seats = document.querySelectorAll('.grid div'); // Selecciona tots els seients
+
+                        seats.forEach(seat => {
+                            seat.addEventListener('click', () => {
+                                if (!seat.classList.contains('cursor-not-allowed')) { // Evita seients ocupats
+                                    seat.classList.toggle('bg-red-500'); // Canvia a verd
+                                    seat.classList.toggle('bg-gray-700'); // Torna al color original
+                                }
+                            });
+                        });
+                    });
+                </script>
+
 
 
 
