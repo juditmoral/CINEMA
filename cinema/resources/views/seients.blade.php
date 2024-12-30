@@ -50,6 +50,14 @@
                     @csrf
                     <!-- Hidden fields per passar la informació dels seients seleccionats -->
                     <input type="hidden" name="seats" id="seatsInput">
+                    <input type="hidden" name="dia" id="diaInput" value="{{ $dia }}">
+                    <input type="hidden" name="hora" id="horaInput" value="{{ $hora }}">
+                    <input type="hidden" name="sala" id="salaInput" value="{{ $sala }}">
+                   
+                    <input type="hidden" name="funcioId" id="funcioIdInput" value="{{ $funcio->id }}">  <!-- ID de la funció -->
+                    <input type="hidden" name="peliculaId" id="peliculaIdInput" value="{{ $peliculaId }}">
+                    
+
 
                     <button id="continuarButton"
                         class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
@@ -137,9 +145,9 @@
                             seat.addEventListener('click', () => {
                                 if (!seat.classList.contains('cursor-not-allowed')) { // Evitar seients ocupats
                                     seat.classList.toggle(
-                                    'bg-red-500'); // Canviar el color del seient seleccionat
+                                        'bg-red-500'); // Canviar el color del seient seleccionat
                                     seat.classList.toggle(
-                                    'bg-gray-700'); // Tornar al color original si es deselecciona
+                                        'bg-gray-700'); // Tornar al color original si es deselecciona
 
                                     // Si el seient està seleccionat, afegir-lo a la llista
                                     const seatData = {
