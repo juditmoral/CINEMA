@@ -42,6 +42,9 @@ Route::get('/infofilms/{id}', [PeliculesController::class, 'show'])->name('infof
 
 Route::get('/seients', [SeientsController::class, 'mostrarSeients'])->name('seients');
 
+// routes/web.php
+Route::get('/compra', [SeientsController::class, 'showCompra'])->name('compra');
+
 
 
 

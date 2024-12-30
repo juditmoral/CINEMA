@@ -101,19 +101,27 @@ class SeientsController extends Controller
         $seients = Seients::where('numSala', $sala)->get();
 
         $llocsOcupats = Entrades::where('funcio_id', $funcioId)
-        ->pluck('seient_id')
-        ->toArray(); // Ens assegurem que és un array
+            ->pluck('seient_id')
+            ->toArray(); // Ens assegurem que és un array
 
 
         if (!$pelicula) {
             return redirect()->back()->with('error', 'Pel·lícula no trobada.');
         }
 
-        
+
 
         // Pasar los datos a la vista 'seients'
-        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId','pelicula','seients','llocsOcupats'));
+        return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId', 'pelicula', 'seients', 'llocsOcupats'));
     }
 
-    
+
+    public function showCompra(Request $request)
+    {
+        // Recuperar la informació dels seients seleccionats
+        $selectedSeats = json_decode($request->input('seats'), true);
+
+        // Passar la informació a la vista
+        return view('compra', compact('selectedSeats'));
+    }
 }

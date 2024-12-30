@@ -46,10 +46,18 @@
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-64 h-auto object-cover rounded-lg">
 
-                <button
-                    class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
-                    {{ __('Continuar') }}
-                </button>
+                <form action="{{ route('compra') }}" method="GET" id="seatsForm">
+                    @csrf
+                    <!-- Hidden fields per passar la informació dels seients seleccionats -->
+                    <input type="hidden" name="seats" id="seatsInput">
+
+                    <button id="continuarButton"
+                        class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        {{ __('Continuar') }}
+                    </button>
+                </form>
+
+
             </div>
 
 
@@ -122,14 +130,46 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         const seats = document.querySelectorAll('.grid div'); // Selecciona tots els seients
+                        let selectedSeats = []; // Array per guardar els seients seleccionats
 
+                        // Afegir esdeveniment al click dels seients
                         seats.forEach(seat => {
                             seat.addEventListener('click', () => {
-                                if (!seat.classList.contains('cursor-not-allowed')) { // Evita seients ocupats
-                                    seat.classList.toggle('bg-red-500'); // Canvia a verd
-                                    seat.classList.toggle('bg-gray-700'); // Torna al color original
+                                if (!seat.classList.contains('cursor-not-allowed')) { // Evitar seients ocupats
+                                    seat.classList.toggle(
+                                    'bg-red-500'); // Canviar el color del seient seleccionat
+                                    seat.classList.toggle(
+                                    'bg-gray-700'); // Tornar al color original si es deselecciona
+
+                                    // Si el seient està seleccionat, afegir-lo a la llista
+                                    const seatData = {
+                                        fila: seat.getAttribute('data-fila'),
+                                        numero: seat.getAttribute('data-numero')
+                                    };
+
+                                    if (seat.classList.contains('bg-red-500')) {
+                                        selectedSeats.push(seatData); // Afegir a la llista
+                                    } else {
+                                        // Eliminar el seient deseleccionat
+                                        selectedSeats = selectedSeats.filter(s => s.fila !== seatData.fila || s
+                                            .numero !== seatData.numero);
+                                    }
                                 }
                             });
+                        });
+
+                        // Acció al pressionar el botó "Continuar"
+                        document.getElementById('continuarButton').addEventListener('click', () => {
+                            if (selectedSeats.length > 0) {
+                                // Afegir la informació dels seients seleccionats al formulari com a camps ocults
+                                const seatsInput = document.getElementById('seatsInput');
+                                seatsInput.value = JSON.stringify(selectedSeats); // Convertir la llista a cadena JSON
+
+                                // Submetre el formulari
+                                document.getElementById('seatsForm').submit();
+                            } else {
+                                alert('Si us plau, selecciona alguns seients abans de continuar.');
+                            }
                         });
                     });
                 </script>
