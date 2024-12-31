@@ -6,6 +6,7 @@ use App\Models\Entrades;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pelicules;
 
 class EntradesController extends Controller
 {
@@ -98,6 +99,12 @@ class EntradesController extends Controller
 
         $funcioId = $request->input('funcio_id');
 
+        $dia= $request->input('dia');
+        $hora= $request->input('hora');
+
+        $peliculaId = $request->input('pelicula_id');
+        $pelicula = Pelicules::find($peliculaId);
+
         $count=0;
 
         foreach ($selectedSeats as $seat) {
@@ -110,6 +117,6 @@ class EntradesController extends Controller
             $count++;
         }
 
-        return view('pagat', compact('count'));
+        return view('pagat', compact('count','pelicula','dia','hora'));
     }
 }
