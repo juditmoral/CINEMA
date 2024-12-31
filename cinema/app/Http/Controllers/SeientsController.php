@@ -132,6 +132,12 @@ class SeientsController extends Controller
         $funcio_id = $request->input('funcioId');
         $pelicula_id = $request->input('peliculaId');
 
+        $pelicula = Pelicules::find($pelicula_id);
+
+        if (!$pelicula) {
+            return redirect()->back()->with('error', 'Pel·lícula no trobada.');
+        }
+
         // Passar la informació a la vista
         return view('compra', [
             'selectedSeats' => $selectedSeats,
@@ -139,7 +145,8 @@ class SeientsController extends Controller
             'hora' => $hora,
             'sala' => $sala,
             'funcio_id' => $funcio_id,
-            'pelicula_id' => $pelicula_id
+            'pelicula_id' => $pelicula_id,
+            'pelicula' =>$pelicula
         ]);
     }
 }
