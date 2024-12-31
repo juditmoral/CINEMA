@@ -32,7 +32,17 @@
  "Día":"Día",
  "Hora":"Hora",
  "Continuar":"Continuar",
- "Total":"Total"
+ "Total":"Total",
+ "Pagar":"Pagar",
+ "Nom":"Nombre",
+ "Escriu el teu nom":"Escribe tu nombre",
+ "Número de la targeta":"Número de la tarjeta",
+ "Escriu el número de la targeta":"Escribe el número de la tarjeta",
+ "Caducitat":"Caducitat",
+ "mes":"mes",
+ "any":"año",
+ "CVV":"CVV",
+ "Escriu el CVV":"Escribe el CVV"
  
  
 
