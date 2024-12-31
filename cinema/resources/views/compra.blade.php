@@ -59,10 +59,23 @@
             <div class="mr-8">
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-80 h-auto object-cover rounded-lg">
-                <button id="continuarButton"
-                    class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
-                    {{ __('Pagar') }}
-                </button>
+                <form method="GET" action="{{ route('pagat') }}" id="paymentForm">
+                    @csrf
+
+                    <input type="hidden" name="selectedSeats" value='@json($selectedSeats)'>
+                    <input type="hidden" name="dia" value="{{ $dia }}">
+                    <input type="hidden" name="hora" value="{{ $hora }}">
+                    <input type="hidden" name="sala" value="{{ $sala }}">
+                    <input type="hidden" name="funcio_id" value="{{ $funcio_id }}">
+                    <input type="hidden" name="pelicula_id" value="{{ $pelicula_id }}">
+
+                    <!-- Botó pagar -->
+                    <button type="submit" id="continuarButton"
+                        class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        {{ __('Pagar') }}
+                    </button>
+                </form>
+
             </div>
 
             <!-- Sección de pagar -->
@@ -113,7 +126,7 @@
 
                         <h2 class="text-gray-500 font-bold text-lg mt-4">{{ __('Nom') }}</h2>
 
-                        <input type="text"
+                        <input type="text" id="name"
                             class="w-full p-2 mt-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white"
                             placeholder="{{ __('Escriu el teu nom') }}">
 
@@ -129,7 +142,7 @@
 
                         <div class="flex space-x-4 mt-2">
                             <div class="w-1/2">
-                                <select
+                                <select id="month"
                                     class="w-full p-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white">
                                     <option value="" disabled selected>{{ __('mes') }}</option>
                                     <!-- Opciones de meses -->
@@ -148,7 +161,7 @@
                                 </select>
                             </div>
                             <div class="w-1/2">
-                                <select
+                                <select id="year"
                                     class="w-full p-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white">
                                     <option value="" disabled selected>{{ __('any') }}</option>
                                     <!-- Opciones de años -->
@@ -171,8 +184,8 @@
 
                         <input type="password" id="cvv"
                             class="w-full p-2 mt-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white"
-                            placeholder="{{ __('Escriu el CVV') }}" maxlength="3" pattern="\d{3}" inputmode="numeric"
-                            required oninput="this.value = this.value.replace(/\D/g, '')">
+                            placeholder="{{ __('Escriu el CVV') }}" maxlength="3" pattern="\d{3}"
+                            inputmode="numeric" required oninput="this.value = this.value.replace(/\D/g, '')">
 
 
 
@@ -250,5 +263,37 @@
     document.getElementById("cardNumber").addEventListener("blur", function() {
         let cardNumber = this.value.replace(/\D/g, ''); // Eliminar espacios y caracteres no numéricos
 
+    });
+
+
+    document.getElementById("continuarButton").addEventListener("click", function() {
+        const name = document.getElementById("name").value.trim();
+        const cardNumber = document.getElementById("cardNumber").value.replace(/\D/g,
+        ''); // Eliminar espais i caràcters no numèrics
+        const month = document.getElementById("month").value;
+        const year = document.getElementById("year").value;
+        const cvv = document.getElementById("cvv").value;
+
+        // Validacions bàsiques
+        if (!name || cardNumber.length !== 16 || !month || !year || cvv.length !== 3) {
+           
+            event.preventDefault();
+
+        }
+        if (cardNumber.length !== 16) {
+            
+            return;
+        }
+        if (!month || !year) {
+           
+            return;
+        }
+        if (cvv.length !== 3) {
+            
+            return;
+        }
+
+        // Si tot és correcte, enviar el formulari
+        document.getElementById("paymentForm").submit();
     });
 </script>

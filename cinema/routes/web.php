@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntradesController;
 use App\Http\Controllers\PeliculesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -42,8 +43,10 @@ Route::get('/infofilms/{id}', [PeliculesController::class, 'show'])->name('infof
 
 Route::get('/seients', [SeientsController::class, 'mostrarSeients'])->name('seients');
 
-// routes/web.php
+
 Route::get('/compra', [SeientsController::class, 'showCompra'])->name('compra');
+
+Route::get('/pagat', [EntradesController::class, 'processPayment'])->name('pagat');
 
 
 

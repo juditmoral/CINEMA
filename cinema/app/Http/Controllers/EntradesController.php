@@ -82,4 +82,14 @@ class EntradesController extends Controller
     {
         //
     }
+
+    public function processPayment(Request $request)
+    {
+       
+
+        // Processar el pagament aquí (simulat per aquest exemple)
+        // Un cop processat correctament, redirigir a la pàgina de confirmació
+
+        return view('pagat');
+    }
 }
