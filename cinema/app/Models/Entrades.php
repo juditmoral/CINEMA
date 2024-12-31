@@ -9,6 +9,12 @@ class Entrades extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'funcio_id',
+        'seient_id',
+        'users_id',
+    ];
+
     protected $table ="entrades";
 
     public function funcio(){

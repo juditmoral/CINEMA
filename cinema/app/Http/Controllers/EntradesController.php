@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrades;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntradesController extends Controller
 {
@@ -85,11 +87,29 @@ class EntradesController extends Controller
 
     public function processPayment(Request $request)
     {
-       
 
-        // Processar el pagament aquí (simulat per aquest exemple)
-        // Un cop processat correctament, redirigir a la pàgina de confirmació
+        $selectedSeats = json_decode($request->input('selectedSeats'), true);
 
-        return view('pagat');
+        if (!is_array($selectedSeats)) {
+            return back()->withErrors(['selectedSeats' => 'Els seients seleccionats no són vàlids.']);
+        }
+
+        $usuariId = Auth::id();
+
+        $funcioId = $request->input('funcio_id');
+
+        $count=0;
+
+        foreach ($selectedSeats as $seat) {
+            Entrades::create([
+                'funcio_id' => $funcioId,
+                'seient_id' => $seat['id'],
+                'users_id' => $usuariId, // Guardem l'ID de l'usuari
+            ]);
+
+            $count++;
+        }
+
+        return view('pagat', compact('count'));
     }
 }
