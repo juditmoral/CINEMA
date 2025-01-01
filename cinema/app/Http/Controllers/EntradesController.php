@@ -101,6 +101,8 @@ class EntradesController extends Controller
 
         $dia= $request->input('dia');
         $hora= $request->input('hora');
+        
+
 
         $peliculaId = $request->input('pelicula_id');
         $pelicula = Pelicules::find($peliculaId);
@@ -112,6 +114,7 @@ class EntradesController extends Controller
                 'funcio_id' => $funcioId,
                 'seient_id' => $seat['id'],
                 'users_id' => $usuariId, // Guardem l'ID de l'usuari
+                'hora'=> $hora,
             ]);
 
             $count++;

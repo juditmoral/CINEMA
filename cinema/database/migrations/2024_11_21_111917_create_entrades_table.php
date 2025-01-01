@@ -31,6 +31,8 @@ return new class extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
+            $table->string('hora');
+
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

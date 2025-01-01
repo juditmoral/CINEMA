@@ -13,6 +13,7 @@ class Entrades extends Model
         'funcio_id',
         'seient_id',
         'users_id',
+        'hora',
     ];
 
     protected $table ="entrades";

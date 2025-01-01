@@ -7,6 +7,8 @@ use App\Models\Funcions;
 use App\Models\Pelicules;
 use App\Models\Seients;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SeientsController extends Controller
 {
@@ -100,9 +102,12 @@ class SeientsController extends Controller
 
         $seients = Seients::where('numSala', $sala)->get();
 
-        $llocsOcupats = Entrades::where('funcio_id', $funcioId)
+        // Obtenemos los IDs de los asientos ocupados en la misma función (mismo día y hora)
+        $llocsOcupats = DB::table('entrades')
+            ->where('hora', $hora)
+            ->where('funcio_id', $funcio->id)
             ->pluck('seient_id')
-            ->toArray(); // Ens assegurem que és un array
+            ->toArray();
 
 
         if (!$pelicula) {
@@ -146,7 +151,7 @@ class SeientsController extends Controller
             'sala' => $sala,
             'funcio_id' => $funcio_id,
             'pelicula_id' => $pelicula_id,
-            'pelicula' =>$pelicula
+            'pelicula' => $pelicula
         ]);
     }
 }

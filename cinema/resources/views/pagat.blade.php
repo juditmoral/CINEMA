@@ -1,6 +1,6 @@
 <div>
     <h2>{{ $count }}</h2>
-    
+
 </div>
 
 
@@ -51,9 +51,9 @@
             <div class="mr-8">
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-80 h-auto object-cover rounded-lg">
-            
-                
-                
+
+
+
 
             </div>
 
@@ -97,12 +97,37 @@
                     </div>
 
                     <!-- Recuadro gris debajo de los pasos numerados -->
-                    <div class="bg-gray-700 p-4 rounded-lg ml-4">
-                        <!-- Aquí puedes agregar contenido adicional si lo deseas -->
+                    <div class="bg-transparent p-4 rounded-lg ml-4">
                         
+                    
+                        @php
+                            // Obtener las entradas desde la base de datos según $count
+                            $entrades = \App\Models\Entrades::orderBy('id', 'desc')->take($count)->get();
 
-
+                        @endphp
+                    
+                        @if ($entrades->isEmpty())
+                            <p class="text-gray-500">{{ __('No hi ha entrades disponibles.') }}</p>
+                        @else
+                            <ul class="space-y-2">
+                                @foreach ($entrades as $entrada)
+                                    @php
+                                        // Buscar el asiento relacionado con el id_seient de la entrada
+                                        $seient = \App\Models\Seients::find($entrada->seient_id);
+                                        $funcio = \App\Models\Funcions::find($entrada->funcio_id);
+                                    @endphp
+                    
+                                    <li class="bg-gray-800 p-3 rounded-lg text-white">
+                                        <p><strong>{{ __('Fila') }}:</strong> {{  $seient->fila }}</p>
+                                        <p><strong>{{ __('Número') }}:</strong> {{ $seient->numero }}</p>
+                                        <p><strong>{{ __('Dia') }}:</strong> {{  $funcio->data }}</p>
+                                        <p><strong>{{ __('Hora') }}:</strong> {{ $entrada->hora}}</p>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
+                    
                 </div>
 
                 <!-- Información de Día, Hora y Total a la derecha -->
@@ -134,5 +159,3 @@
 
 
 </x-guest-layout>
-
-

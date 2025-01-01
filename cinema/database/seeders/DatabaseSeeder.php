@@ -120,12 +120,14 @@ class DatabaseSeeder extends Seeder
             'funcio_id' => 1, // Funció a la sala 1
             'seient_id' => 1, // Seient 1 de la fila 1 de la sala 1
             'users_id' => 1,  // Usuari 1
+            'hora' => '18:30',
         ]);
 
         DB::table('entrades')->insert([
             'funcio_id' => 3, // Funció a la sala 2
             'seient_id' => 85, // Seient de la fila 6 de la sala 2
             'users_id' => 1,  // Usuari 1
+            'hora' => '20:00',
         ]);
 
     }
