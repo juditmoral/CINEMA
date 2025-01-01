@@ -42,7 +42,13 @@
  "mes":"mes",
  "any":"año",
  "CVV":"CVV",
- "Escriu el CVV":"Escribe el CVV"
+ "Escriu el CVV":"Escribe el CVV",
+ "Veure tiquets":"Ver tickets",
+ "No hi ha entrades disponibles.":"No hay enradas disponibles.",
+ "Fila":"Fila",
+ "Dia":"Día",
+ "Número":"Número"
+ 
  
  
 

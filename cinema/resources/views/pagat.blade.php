@@ -162,7 +162,7 @@
                                                     );
                                                 @endphp
                                                 <img src="data:image/png;base64,{{ $barcodeImage }}"
-                                                    alt="Código de barras">
+                                                    alt="Códi de barres">
                                             </div>
 
                                             <!-- Texto STELLA (debajo del código de barras) -->
