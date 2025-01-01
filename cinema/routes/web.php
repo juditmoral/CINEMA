@@ -49,7 +49,7 @@ Route::get('/compra', [SeientsController::class, 'showCompra'])->name('compra');
 Route::get('/pagat', [EntradesController::class, 'processPayment'])->name('pagat');
 
 
-
+Route::get('/tiquets', [EntradesController::class, 'showEntrades'])->name('tiquets');
 
 
 require __DIR__.'/auth.php';

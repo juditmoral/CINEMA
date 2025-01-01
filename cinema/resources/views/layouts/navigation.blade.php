@@ -17,6 +17,14 @@
                     </x-nav-link>
                 </div>
 
+                @auth
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('tiquets')" :active="request()->routeIs('tiquets')" class="text-white hover:text-red-500 transition">
+                        {{ __('Tiquets') }}
+                    </x-nav-link>
+                </div>
+                @endauth
+
                 <!-- Localization Links -->
                 <div class="pl-10 hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
@@ -31,7 +39,7 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            @foreach (['ca', 'en', 'es', 'fr'] as $l)
+                            @foreach (['ca', 'en', 'es'] as $l)
                                 @if ($l != App::currentLocale())
                                     <x-dropdown-link :href="url('/lang/'.$l)" class="text-black hover:text-red-500 transition">
                                         {{ $l }}
@@ -91,5 +99,13 @@
                 {{ __('Registrar-se') }}
             </x-responsive-nav-link>
         </div>
+
+        @auth
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('tiquets')" :active="request()->routeIs('tiquets')" class="text-white hover:text-red-500 transition">
+                {{ __('Tiquets') }}
+            </x-responsive-nav-link>
+        </div>
+        @endauth
     </div>
 </nav>

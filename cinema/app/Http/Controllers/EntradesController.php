@@ -122,4 +122,9 @@ class EntradesController extends Controller
 
         return view('pagat', compact('count','pelicula','dia','hora'));
     }
+
+
+    public function showEntrades(){
+        return view('tiquets');
+    }
 }
