@@ -1,11 +1,3 @@
-<div>
-    <h2>{{ $count }}</h2>
-
-</div>
-
-
-
-
 @php
     $locale = App::currentLocale();
     $locale = app()->getLocale();
@@ -52,7 +44,10 @@
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-80 h-auto object-cover rounded-lg">
 
-
+                <button type="submit" id="continuarButton"
+                    class="mt-4 px-6 py-2 bg-white text-gray-500 font-medium text-lg rounded-lg border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    {{ __('Veure tiquets') }}
+                </button>
 
 
             </div>
@@ -98,14 +93,15 @@
 
                     <!-- Recuadro gris debajo de los pasos numerados -->
                     <div class="bg-transparent p-4 rounded-lg ml-4">
-                        
-                    
                         @php
-                            // Obtener las entradas desde la base de datos según $count
-                            $entrades = \App\Models\Entrades::orderBy('id', 'desc')->take($count)->get();
-
+                            $usuariId = Auth::id();
+                            // Obtener las últimas 2 entradas del usuario
+                            $entrades = \App\Models\Entrades::where('users_id', $usuariId)
+                                ->orderBy('id', 'desc')
+                                ->take(2)
+                                ->get();
                         @endphp
-                    
+
                         @if ($entrades->isEmpty())
                             <p class="text-gray-500">{{ __('No hi ha entrades disponibles.') }}</p>
                         @else
@@ -115,19 +111,85 @@
                                         // Buscar el asiento relacionado con el id_seient de la entrada
                                         $seient = \App\Models\Seients::find($entrada->seient_id);
                                         $funcio = \App\Models\Funcions::find($entrada->funcio_id);
+                                        $pelicula = \App\Models\Pelicules::find($funcio->pelicula_id);
+                                        // Formatear la fecha para mostrar el número del día, mes (en número) y año (en número)
+                                        $formattedDate = \Carbon\Carbon::parse($funcio->data)
+                                            ->locale($locale)
+                                            ->format('d-m-Y');
                                     @endphp
-                    
-                                    <li class="bg-gray-800 p-3 rounded-lg text-white">
-                                        <p><strong>{{ __('Fila') }}:</strong> {{  $seient->fila }}</p>
-                                        <p><strong>{{ __('Número') }}:</strong> {{ $seient->numero }}</p>
-                                        <p><strong>{{ __('Dia') }}:</strong> {{  $funcio->data }}</p>
-                                        <p><strong>{{ __('Hora') }}:</strong> {{ $entrada->hora}}</p>
+
+                                    <li class="bg-transparent p-3 rounded-lg text-white flex"
+                                        style="position: relative; background-image: url('{{ asset($pelicula->url) }}'); background-size: cover; background-position: center;">
+                                        <!-- Filtro para oscurecer la imagen -->
+                                        <div class="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
+
+                                        <!-- Contenedor para los 1/4 de la información (fila, número, día, hora, código de barras y STELLA) -->
+                                        <div class="w-full flex flex-col justify-between relative z-10">
+                                            <!-- Sección de fila y número (fila a la izquierda y número debajo de fila) -->
+                                            <div class="flex mb-2">
+                                                <div class="flex flex-col w-1/2">
+                                                    <p><strong>{{ __('Fila') }}:</strong> {{ $seient->fila }}</p>
+                                                </div>
+                                                <div class="flex flex-col w-1/2 text-right">
+                                                    <p><strong>{{ __('Dia') }}:</strong> {{ $formattedDate }}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex mb-2">
+                                                <div class="flex flex-col w-1/2">
+                                                    <p><strong>{{ __('Número') }}:</strong> {{ $seient->numero }}</p>
+                                                </div>
+                                                <div class="flex flex-col w-1/2 text-right">
+                                                    <p><strong>{{ __('Hora') }}:</strong> {{ $entrada->hora }}</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Código de barras (centrado) -->
+                                            <div class="mt-4 flex justify-center">
+                                                @php
+                                                    // Generar código de barras con el ID de la entrada (como ejemplo)
+                                                    $barcode = \Picqer\Barcode\BarcodeGeneratorPNG::class;
+                                                    $generator = new $barcode();
+                                                    // Cambiar color a blanco para el código de barras
+                                                    $barcodeImage = base64_encode(
+                                                        $generator->getBarcode(
+                                                            $entrada->id,
+                                                            $generator::TYPE_CODE_128,
+                                                            2,
+                                                            30,
+                                                            [255, 255, 255],
+                                                        ),
+                                                    );
+                                                @endphp
+                                                <img src="data:image/png;base64,{{ $barcodeImage }}"
+                                                    alt="Código de barras">
+                                            </div>
+
+                                            <!-- Texto STELLA (debajo del código de barras) -->
+                                            <div class="mt-4 text-center">
+                                                <p class="text-white font-bold text-lg">{{ __('STELLA') }}</p>
+                                            </div>
+                                        </div>
                                     </li>
                                 @endforeach
                             </ul>
                         @endif
                     </div>
-                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
                 <!-- Información de Día, Hora y Total a la derecha -->
