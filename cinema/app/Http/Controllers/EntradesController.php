@@ -125,6 +125,9 @@ class EntradesController extends Controller
 
 
     public function showEntrades(){
-        return view('tiquets');
+
+        $usuariId=Auth::id();
+        $entrades = Entrades::where('users_id', $usuariId)->get();
+        return view('tiquets', compact('entrades'));
     }
 }

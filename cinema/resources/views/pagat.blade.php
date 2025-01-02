@@ -98,7 +98,7 @@
                             // Obtener las últimas 2 entradas del usuario
                             $entrades = \App\Models\Entrades::where('users_id', $usuariId)
                                 ->orderBy('id', 'desc')
-                                ->take(2)
+                                ->take($count)
                                 ->get();
                         @endphp
 

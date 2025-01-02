@@ -96,8 +96,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('funcions')->insert(['data' => '2024-12-01','hora' => '18:30,20:00','numSala' => '1','pelicula_id' => 1]);
         DB::table('funcions')->insert(['data' => '2024-12-02','hora' => '18:30,21:00','numSala' => '1','pelicula_id' => 1]);
-        DB::table('funcions')->insert(['data' => '2024-12-02','hora' => '20:00:00','numSala' => '3','pelicula_id' => 2]);
-        DB::table('funcions')->insert(['data' => '2024-12-03','hora' => '19:15:00','numSala' => '2','pelicula_id' => 3]);
+        DB::table('funcions')->insert(['data' => '2024-12-02','hora' => '20:00,22:00','numSala' => '3','pelicula_id' => 2]);
+        DB::table('funcions')->insert(['data' => '2024-12-03','hora' => '19:00,21:30','numSala' => '2','pelicula_id' => 3]);
 
         //SEIENTS
 
@@ -123,12 +123,7 @@ class DatabaseSeeder extends Seeder
             'hora' => '18:30',
         ]);
 
-        DB::table('entrades')->insert([
-            'funcio_id' => 3, // Funció a la sala 2
-            'seient_id' => 85, // Seient de la fila 6 de la sala 2
-            'users_id' => 1,  // Usuari 1
-            'hora' => '20:00',
-        ]);
+       
 
     }
 }
