@@ -16,7 +16,9 @@
             'seleccionat' => $seleccionat,
             'seleccionatf' => $seleccionatf,
             'pelicula' => $seleccionatp,
-            'formattedDate' => \Carbon\Carbon::parse($seleccionatf->data)->locale($locale)->format('d-m-Y'),
+            'formattedDate' => \Carbon\Carbon::parse($seleccionatf->data)
+                ->locale($locale)
+                ->format('d-m-Y'),
             'entrada' => $entrada,
         ];
     }
@@ -38,7 +40,6 @@
 
     <div class="pl-3 space-y-4 w-full">
         @foreach ($entradesPorPelicula as $tituloPelicula => $entradasPelicula)
-
             <div class="text-4xl font-bold text-white text-center mt-8 mb-8">{{ $tituloPelicula }}</div>
 
             <div class="grid grid-cols-2 gap-4 justify-items-center">
@@ -74,26 +75,30 @@
                                 $generator = new $barcode();
                                 // Cambiar color a blanco para el código de barras
                                 $barcodeImage = base64_encode(
-                                    $generator->getBarcode($entrada->id, $generator::TYPE_CODE_128, 3, 50, [255, 255, 255]),
+                                    $generator->getBarcode($entrada->id, $generator::TYPE_CODE_128, 3, 50, [
+                                        255,
+                                        255,
+                                        255,
+                                    ]),
                                 );
                             @endphp
                             <img class="mx-auto" src="data:image/png;base64,{{ $barcodeImage }}" alt="Códi de barres">
 
                             <h2 class="font-bold text-lg text-white mt-4">{{ __('STELLA') }}</h2>
 
-                                 <!-- Botón de papelera debajo a la derecha -->
-                       
-                                 <div class="flex justify-end ">
-                                    <button class="bg-transparent">
+                            <!-- Botón de papelera debajo a la derecha -->
+                            <div class="flex justify-end ">
+                                <form action="{{ route('entrades.delete', $entrada->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta entrada?');">
+                                    @csrf
+                                    @method('DELETE') <!-- Esto asegura que se use el método DELETE -->
+                                    <button type="submit" class="bg-transparent">
                                         <i class="fas fa-trash text-lg text-white"></i>
                                     </button>
-                                </div>
-                       
+                                </form>
+                                
 
-                       
+                            </div>
                         </div>
-
-                        
                     </div>
                 @endforeach
             </div>

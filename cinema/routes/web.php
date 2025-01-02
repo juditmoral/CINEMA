@@ -52,4 +52,8 @@ Route::get('/pagat', [EntradesController::class, 'processPayment'])->name('pagat
 Route::get('/tiquets', [EntradesController::class, 'showEntrades'])->name('tiquets');
 
 
+Route::delete('/entrades/{id}', [EntradesController::class, 'destroy'])->name('entrades.delete');
+
+
+
 require __DIR__.'/auth.php';

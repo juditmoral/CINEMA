@@ -81,10 +81,7 @@ class EntradesController extends Controller
      * @param  \App\Models\Entrades  $entrades
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Entrades $entrades)
-    {
-        //
-    }
+
 
     public function processPayment(Request $request)
     {
@@ -99,39 +96,51 @@ class EntradesController extends Controller
 
         $funcioId = $request->input('funcio_id');
 
-        $dia= $request->input('dia');
-        $hora= $request->input('hora');
-        
+        $dia = $request->input('dia');
+        $hora = $request->input('hora');
+
 
 
         $peliculaId = $request->input('pelicula_id');
         $pelicula = Pelicules::find($peliculaId);
 
-        $count=0;
+        $count = 0;
 
         foreach ($selectedSeats as $seat) {
             Entrades::create([
                 'funcio_id' => $funcioId,
                 'seient_id' => $seat['id'],
                 'users_id' => $usuariId, // Guardem l'ID de l'usuari
-                'hora'=> $hora,
+                'hora' => $hora,
             ]);
 
             $count++;
         }
 
-        return view('pagat', compact('count','pelicula','dia','hora'));
+        return view('pagat', compact('count', 'pelicula', 'dia', 'hora'));
     }
 
 
-    public function showEntrades(){
+    public function showEntrades()
+    {
 
-        $usuariId=Auth::id();
+        $usuariId = Auth::id();
         $entrades = Entrades::where('users_id', $usuariId)->get();
 
 
-        
+
 
         return view('tiquets', compact('entrades'));
+    }
+
+
+    public function destroy($id)
+    {
+        // Buscar la entrada por ID y eliminarla
+        $entrada = Entrades::findOrFail($id);
+        $entrada->delete();
+
+        // Redirigir de vuelta con un mensaje de éxito
+        return redirect()->route('tiquets')->with('success', 'Entrada eliminada correctamente');
     }
 }
