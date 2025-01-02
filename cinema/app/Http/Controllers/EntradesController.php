@@ -128,6 +128,10 @@ class EntradesController extends Controller
 
         $usuariId=Auth::id();
         $entrades = Entrades::where('users_id', $usuariId)->get();
+
+
+        
+
         return view('tiquets', compact('entrades'));
     }
 }
