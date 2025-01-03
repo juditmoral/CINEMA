@@ -99,6 +99,14 @@ class PeliculesController extends Controller
     }
 
 
+    public function crearPelicula(){
+
+        return view('crearPelicula');
+
+
+    }
+
+
    
 
 }

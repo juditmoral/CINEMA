@@ -54,7 +54,7 @@ Route::get('/tiquets', [EntradesController::class, 'showEntrades'])->name('tique
 
 Route::delete('/entrades/{id}', [EntradesController::class, 'destroy'])->name('entrades.delete');
 
-
+Route::get('/crearPelicula', [PeliculesController::class, 'crearPelicula'])->name('crearPelicula');
 
 
 require __DIR__.'/auth.php';
