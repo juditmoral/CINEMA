@@ -99,9 +99,6 @@ class PeliculesController extends Controller
     }
 
 
-    public function showPelis(){
-
-        return view('editarPelis');
-    }
+   
 
 }

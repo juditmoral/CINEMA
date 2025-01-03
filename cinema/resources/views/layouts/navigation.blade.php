@@ -25,13 +25,7 @@
                 </div>
                 @endauth
 
-                @can('administrar')  
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('pelis')" :active="request()->routeIs('pelis')" class="text-white hover:text-red-500 transition">
-                        {{ __('Pel·lícules') }}
-                    </x-nav-link>
-                </div>
-                @endcan
+                
 
                 <!-- Localization Links -->
                 <div class="pl-10 hidden sm:flex sm:items-center sm:ml-6">
@@ -117,13 +111,7 @@
         @endauth
 
 
-        @can('administrar')
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('pelis')" :active="request()->routeIs('pelis')" class="text-white hover:text-red-500 transition">
-                {{ __('Pel·lícules') }}
-            </x-responsive-nav-link>
-        </div>
-        @endcan
+        
 
 
     </div>
