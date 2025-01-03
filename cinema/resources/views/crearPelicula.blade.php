@@ -23,7 +23,10 @@
         <div class="max-w-3xl mx-auto">
             <form action="{{ route('guardarPelicula') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
+                <div class="mb-6">
+                    <label for="duracio" class="block text-sm font-semibold text-white">{{ __('Duració') }}</label>
+                    <input type="text" name="duracio" id="duracio" value="{{ old('duracio') }}" class="mt-2 w-full p-2 border rounded-md" required>
+                </div>
                 <!-- Títol -->
                 <div class="mb-6">
                     <label for="titul_es" class="block text-sm font-semibold text-white">{{ __('Títol en Espanyol') }}</label>
@@ -112,6 +115,21 @@
                 <div class="mb-6">
                     <label for="director" class="block text-sm font-semibold text-white">{{ __('Director') }}</label>
                     <input type="text" name="director" id="director" value="{{ old('director') }}" class="mt-2 w-full p-2 border rounded-md" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="pais_es" class="block text-sm font-semibold text-white">{{ __('Pais en Espanyol') }}</label>
+                    <input type="text" name="pais_es" id="pais_es" value="{{ old('pais_es') }}" class="mt-2 w-full p-2 border rounded-md" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="pais_ca" class="block text-sm font-semibold text-white">{{ __('Pais en Català') }}</label>
+                    <input type="text" name="pais_ca" id="pais_ca" value="{{ old('pais_ca') }}" class="mt-2 w-full p-2 border rounded-md" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="pais_en" class="block text-sm font-semibold text-white">{{ __('Pais en Anglès') }}</label>
+                    <input type="text" name="pais_en" id="pais_en" value="{{ old('pais_en') }}" class="mt-2 w-full p-2 border rounded-md" required>
                 </div>
 
                 <!-- Imatge del Pòster -->

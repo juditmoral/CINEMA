@@ -29,7 +29,7 @@ class PeliculesController extends Controller
      */
     public function create()
     {
-        //
+        return view('crearPelicula');
     }
 
     /**
@@ -99,11 +99,57 @@ class PeliculesController extends Controller
     }
 
 
-    public function crearPelicula(){
+    public function crear(){
 
         return view('crearPelicula');
 
 
+    }
+
+
+    public function guardar(Request $request)
+    {
+        // Validar dades
+        $request->validate([
+            'duracio'=>'required|integer',
+            'titul_es' => 'required|string',
+            'titul_ca' => 'required|string',
+            'titul_en' => 'required|string',
+            'descripció_es' => 'required|string',
+            'descripció_ca' => 'required|string',
+            'descripció_en' => 'required|string',
+            'pais_es'=>'required|string',
+            'pais_ca'=>'required|string',
+            'pais_en'=>'required|string',
+            'genere_es' => 'required|string',
+            'genere_ca' => 'required|string',
+            'genere_en' => 'required|string',
+            'data' => 'required|date',
+            'director' => 'required|string',
+            'url' => 'required|string',
+        ]);
+
+        // Crear una nova pel·lícula
+        Pelicules::create([
+            'duracio'=>$request->duracio,
+            'titul_es' => $request->titul_es,
+            'titul_ca' => $request->titul_ca,
+            'titul_en' => $request->titul_en,
+            'descripció_es' => $request->descripció_es,
+            'descripció_ca' => $request->descripció_ca,
+            'descripció_en' => $request->descripció_en,
+            'pais_es'=>$request->pais_es,
+            'pais_ca'=>$request->pais_ca,
+            'pais_en'=>$request->pais_en,
+            'genere_es' => $request->genere_es,
+            'genere_ca' => $request->genere_ca,
+            'genere_en' => $request->genere_en,
+            'data' => $request->data,
+            'director' => $request->director,
+            'url' => $request->url,
+        ]);
+
+        return redirect()->route('afegirPelicula')->with('success', 'Pel·lícula afegida correctament.');
     }
 
 

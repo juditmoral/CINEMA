@@ -57,4 +57,13 @@ Route::delete('/entrades/{id}', [EntradesController::class, 'destroy'])->name('e
 Route::get('/crearPelicula', [PeliculesController::class, 'crearPelicula'])->name('crearPelicula');
 
 
+
+
+Route::middleware(['auth', 'can:administrar'])->group(function () {
+    Route::get('/afegir-pelicula', [PeliculesController::class, 'crear'])->name('afegirPelicula');
+    Route::post('/guardar-pelicula', [PeliculesController::class, 'guardar'])->name('guardarPelicula');
+});
+
+
+
 require __DIR__.'/auth.php';
