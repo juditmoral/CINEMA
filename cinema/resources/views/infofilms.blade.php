@@ -18,7 +18,28 @@
         </h2>
     </div>
 
+
+
     <div class="mt-8 pl-3">
+
+        <div class="w-full flex justify-end mt-4 mr-16">
+            @can('administrar')
+                <button onclick="window.location.href='{{ route('crearPelicula') }}'"
+                    class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-4xl hover:bg-red-500">
+                    +
+                </button>
+
+                <button onclick="window.location.href='{{ route('crearPelicula') }}'"
+                    class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-xl hover:bg-red-500">
+                    <i class="fas fa-edit"></i>
+                </button>
+
+                <button onclick="window.location.href='{{ route('crearPelicula') }}'"
+                    class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-xl hover:bg-red-500">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            @endcan
+        </div>
 
         <!-- Título de la película -->
         <h2 class="text-white font-bold text-4xl mb-2">
