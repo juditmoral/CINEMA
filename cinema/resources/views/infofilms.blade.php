@@ -29,7 +29,7 @@
                     +
                 </button>
 
-                <button onclick="window.location.href='{{ route('crearPelicula') }}'"
+                <button onclick="window.location.href='{{ route('editarPelicula',$pelicula->id) }}'"
                     class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-xl hover:bg-red-500">
                     <i class="fas fa-edit"></i>
                 </button>

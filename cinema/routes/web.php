@@ -64,6 +64,10 @@ Route::middleware(['auth', 'can:administrar'])->group(function () {
     Route::post('/guardar-pelicula', [PeliculesController::class, 'guardar'])->name('guardarPelicula');
 });
 
+Route::get('/editar-pelicula/{id}', [PeliculesController::class, 'edit'])->name('editarPelicula');
+
+
+Route::post('/pelicula/editar/{id}', [PeliculesController::class, 'update'])->name('guardarPeli');
 
 
 require __DIR__.'/auth.php';
