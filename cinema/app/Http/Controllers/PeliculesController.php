@@ -178,6 +178,6 @@ class PeliculesController extends Controller
 
     $pelicula->update($request->all());
 
-    return redirect()->back()->with('success', __('Pel·lícula editada correctament.'));
+    return redirect()->route('infofilms',$pelicula);
 }
 }
