@@ -151,8 +151,6 @@
                                     class="w-full p-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white">
                                     <option value="" disabled selected>{{ __('any') }}</option>
                                     <!-- Opciones de años -->
-                                    <option value="23">{{ __('23') }}</option>
-                                    <option value="24">{{ __('24') }}</option>
                                     <option value="25">{{ __('25') }}</option>
                                     <option value="26">{{ __('26') }}</option>
                                     <option value="27">{{ __('27') }}</option>

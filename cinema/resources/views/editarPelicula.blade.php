@@ -59,49 +59,49 @@
                 <div class="mb-6">
                     <label for="genere_es" class="block text-sm font-semibold text-white">{{ __('Gènere en Espanyol') }}</label>
                     <select name="genere_es" id="genere_es" class="mt-2 w-full p-2 border rounded-md" required>{{old('genere_es',$pelicula->genere_es)}}
-                        <option value="Acción">{{ __('Acción') }}</option>
-                        <option value="Animación">{{ __('Animación') }}</option>
-                        <option value="Aventura">{{ __('Aventura') }}</option>
-                        <option value="Bélico">{{ __('Bélico') }}</option>
-                        <option value="Ciencia Ficción">{{ __('Ciencia Ficción') }}</option>
-                        <option value="Biográfico">{{ __('Biográfico') }}</option>
-                        <option value="Comedia">{{ __('Comedia') }}</option>
-                        <option value="Documental">{{ __('Documental') }}</option>
-                        <option value="Drama">{{ __('Drama') }}</option>
-                        <option value="Thriller">{{ __('Thriller') }}</option>
-                        <option value="Terror">{{ __('Terror') }}</option>
+                        <option value="Acción">{{ "Acción" }}</option>
+                        <option value="Animación">{{ "Animación" }}</option>
+                        <option value="Aventura">{{ "Aventura" }}</option>
+                        <option value="Bélico">{{ "Bélico" }}</option>
+                        <option value="Ciencia Ficción">{{ "Ciencia Ficción" }}</option>
+                        <option value="Biográfico">{{ "Biográfico" }}</option>
+                        <option value="Comedia">{{ "Comedia" }}</option>
+                        <option value="Documental">{{ "Documental" }}</option>
+                        <option value="Drama">{{ "Drama" }}</option>
+                        <option value="Thriller">{{ "Thriller" }}</option>
+                        <option value="Terror">{{ "Terror" }}</option>
                     </select>
                 </div>
                 <div class="mb-6">
                     <label for="genere_ca" class="block text-sm font-semibold text-white">{{ __('Gènere en Català') }}</label>
                     <select name="genere_ca" id="genere_ca" class="mt-2 w-full p-2 border rounded-md" required>{{old('genere_es',$pelicula->genere_ca)}}
-                        <option value="Acció">{{ __('Acció') }}</option>
-                        <option value="Animació">{{ __('Animació') }}</option>
-                        <option value="Aventura">{{ __('Aventura') }}</option>
-                        <option value="Bèlic">{{ __('Bèlic') }}</option>
-                        <option value="Ciencia Ficció">{{ __('Ciencia Ficció') }}</option>
-                        <option value="Biogràfic">{{ __('Biogràfic') }}</option>
-                        <option value="Comèdia">{{ __('Comèdia') }}</option>
-                        <option value="Documental">{{ __('Documental') }}</option>
-                        <option value="Drama">{{ __('Drama') }}</option>
-                        <option value="Thriller">{{ __('Thriller') }}</option>
-                        <option value="Terror">{{ __('Terror') }}</option>
+                        <option value="Acció">{{ "Acció" }}</option>
+                        <option value="Animació">{{ "Animació" }}</option>
+                        <option value="Aventura">{{ "Aventura" }}</option>
+                        <option value="Bèlic">{{ "Bèlic" }}</option>
+                        <option value="Ciencia Ficció">{{ "Ciencia Ficció" }}</option>
+                        <option value="Biogràfic">{{ "Biogràfic" }}</option>
+                        <option value="Comèdia">{{ "Comèdia" }}</option>
+                        <option value="Documental">{{ "Documental" }}</option>
+                        <option value="Drama">{{ "Drama" }}</option>
+                        <option value="Thriller">{{ "Thriller" }}</option>
+                        <option value="Terror">{{ "Terror" }}</option>
                     </select>
                 </div>
                 <div class="mb-6">
                     <label for="genere_en" class="block text-sm font-semibold text-white">{{ __('Gènere en Anglès') }}</label>
                     <select name="genere_en" id="genere_en" class="mt-2 w-full p-2 border rounded-md" required>{{old('genere_es',$pelicula->genere_en)}}
-                        <option value="Action">{{ __('Action') }}</option>
-                        <option value="Animation">{{ __('Animation') }}</option>
-                        <option value="Adventure">{{ __('Adventure') }}</option>
-                        <option value="War">{{ __('War') }}</option>
-                        <option value="Science Fiction">{{ __('Science Fiction') }}</option>
-                        <option value="Biography">{{ __('Biography') }}</option>
-                        <option value="Comedy">{{ __('Comedy') }}</option>
-                        <option value="Documentary">{{ __('Documentary') }}</option>
-                        <option value="Drama">{{ __('Drama') }}</option>
-                        <option value="Thriller">{{ __('Thriller') }}</option>
-                        <option value="Horror">{{ __('Horror') }}</option>
+                        <option value="Action">{{ "Action" }}</option>
+                        <option value="Animation">{{ "Animation" }}</option>
+                        <option value="Adventure">{{ "Adventure" }}</option>
+                        <option value="War">{{ "War" }}</option>
+                        <option value="Science Fiction">{{ "Science Fiction" }}</option>
+                        <option value="Biography">{{ "Biography" }}</option>
+                        <option value="Comedy">{{ "Comedy" }}</option>
+                        <option value="Documentary">{{ "Documentary" }}</option>
+                        <option value="Drama">{{ "Drama" }}</option>
+                        <option value="Thriller">{{ "Thriller" }}</option>
+                        <option value="Horror">{{ "Horror" }}</option>
                     </select>
                 </div>
 

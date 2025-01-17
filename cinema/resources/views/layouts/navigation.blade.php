@@ -68,12 +68,12 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')" class="text-white hover:text-red-500 transition">
+                            <x-dropdown-link :href="route('profile.edit')" class="text-black hover:text-red-500 transition">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-dropdown-link :href="route('logout')" class="text-white hover:text-red-500 transition" onclick="event.preventDefault(); this.closest('form').submit();">
+                                <x-dropdown-link :href="route('logout')" class="text-black hover:text-red-500 transition" onclick="event.preventDefault(); this.closest('form').submit();">
                                     {{ __('Sortir') }}
                                 </x-dropdown-link>
                             </form>

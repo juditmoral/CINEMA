@@ -1,5 +1,10 @@
 
 <x-app-layout>
+
+    <div class="absolute top-0 left-0 w-full z-20">
+        @include('layouts.navigation')
+    </div>
+    
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}

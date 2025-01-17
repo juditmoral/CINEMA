@@ -16,14 +16,14 @@
     </div>
 
     <!-- Encapçalament amb fons degradat -->
-    <div class="w-full min-h-[300px] flex justify-center items-center bg-cover bg-center top-0 mt-0 z-10"
+    <div class="w-full min-h-[350px] flex justify-center items-center bg-cover bg-center top-0 mt-0 z-10"
         style="background: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 0.5)), url('{{ asset('https://img.freepik.com/vector-gratis/fondo-escenario-cine-palomitas-maiz-sillas-claqueta_1017-38722.jpg?semt=ais_hybrid') }}'); background-size: cover; background-repeat: no-repeat;">
         <h2 class="text-white font-bold text-6xl">
             {{__('Afegir funcions')}}
         </h2>
     </div>
 
-    <div class="container mx-auto my-8">
+    <div class="container mx-auto my-14">
         <div class="max-w-3xl mx-auto">
             <form action="{{ route('funcio.store') }}" method="GET" enctype="multipart/form-data">
                 @csrf

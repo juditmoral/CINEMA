@@ -12,7 +12,8 @@
         $seleccionatf = \App\Models\Funcions::where('id', $funcio)->first();
         $pelicula = $seleccionatf->pelicula_id;
         $seleccionatp = \App\Models\Pelicules::where('id', $pelicula)->first();
-        $entradesPorPelicula[$seleccionatp->titul_es][] = [
+        $tituloPelicula = 'titul_' . $locale; // Construir el nombre del campo dinámicamente
+        $entradesPorPelicula[$seleccionatp->$tituloPelicula][] = [
             'seleccionat' => $seleccionat,
             'seleccionatf' => $seleccionatf,
             'pelicula' => $seleccionatp,
@@ -40,7 +41,7 @@
 
     <div class="pl-3 space-y-4 w-full">
         @foreach ($entradesPorPelicula as $tituloPelicula => $entradasPelicula)
-            <div class="text-4xl font-bold text-white text-center mt-8 mb-8">{{ $tituloPelicula }}</div>
+            <div class="text-4xl font-bold text-white text-center mt-8 mb-8">{{ __($tituloPelicula) }}</div>
 
             <div class="grid grid-cols-2 gap-4 justify-items-center">
                 @foreach ($entradasPelicula as $data)
@@ -54,7 +55,7 @@
                     <div class="bg-cover bg-center p-4 rounded shadow-md w-2/3"
                         style="background: url('{{ $seleccionatp->url }}'); background-size: cover; background-repeat: no-repeat; background-blend-mode: overlay; background-color: rgba(0, 0, 0, 0.5);">
                         <div class="flex justify-between items-start text-gray-800">
-                            
+
                             <!-- Columna izquierda (fila y número) -->
                             <div class="space-y-2 text-white">
                                 <h2 class="text-lg"><strong>{{ __('Fila: ') }}</strong>{{ $seleccionat->fila }}</h2>
@@ -86,18 +87,20 @@
                             <img class="mx-auto" src="data:image/png;base64,{{ $barcodeImage }}" alt="Códi de barres">
 
                             <h2 class="font-bold text-lg text-white mt-4">{{ __('STELLA') }}</h2>
-                             <h2 class="font-bold text-lg text-white mt-4">{{ __('Sala: ') }} {{ $seleccionat->numSala}}</h2>
+                            <h2 class="font-bold text-lg text-white mt-4">{{ __('Sala: ') }}
+                                {{ $seleccionat->numSala }}</h2>
 
                             <!-- Botón de papelera debajo a la derecha -->
                             <div class="flex justify-end ">
-                                <form action="{{ route('entrades.delete', $entrada->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta entrada?');">
+                                <form action="{{ route('entrades.delete', $entrada->id) }}" method="POST"
+                                    onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta entrada?');">
                                     @csrf
                                     @method('DELETE') <!-- Esto asegura que se use el método DELETE -->
                                     <button type="submit" class="bg-transparent">
                                         <i class="fas fa-trash text-lg text-white"></i>
                                     </button>
                                 </form>
-                                
+
 
                             </div>
                         </div>
