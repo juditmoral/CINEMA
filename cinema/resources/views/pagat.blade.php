@@ -168,6 +168,7 @@
                                             <!-- Texto STELLA (debajo del código de barras) -->
                                             <div class="mt-4 text-center">
                                                 <p class="text-white font-bold text-lg">{{ __('STELLA') }}</p>
+                                                 <p class="text-white font-bold text-lg">{{ __('Sala: ') }}{{ $seient->numSala}}</p>
                                             </div>
                                         </div>
                                     </li>

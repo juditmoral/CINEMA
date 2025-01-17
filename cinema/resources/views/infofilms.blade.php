@@ -24,7 +24,7 @@
 
         <div class="w-full flex justify-end mt-4 mr-16">
             @can('administrar')
-                <button onclick="window.location.href='{{ route('crearPelicula') }}'"
+                <button onclick="window.location.href='{{ route('crearFuncio',$pelicula->id) }}'"
                     class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-4xl hover:bg-red-500">
                     +
                 </button>
@@ -34,10 +34,16 @@
                     <i class="fas fa-edit"></i>
                 </button>
 
-                <button onclick="window.location.href='{{ route('crearPelicula') }}'"
-                    class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-xl hover:bg-red-500">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
+                <button onclick="event.preventDefault(); document.getElementById('eliminar-form').submit();"
+        class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-xl hover:bg-red-500">
+    <i class="fas fa-trash-alt"></i>
+</button>
+
+<form id="eliminar-form" action="{{ route('eliminarPelicula', $pelicula->id) }}" method="POST" style="display:none;">
+    @csrf
+    @method('DELETE')  <!-- Esto indica que la solicitud será de tipo DELETE -->
+</form>
+
             @endcan
         </div>
 
@@ -114,6 +120,17 @@
                                 @endforeach
 
                             </div>
+@can('administrar')
+                            <button onclick="event.preventDefault(); document.getElementById('eliminar-form2').submit();"
+        class="mr-4 px-3 py-2 bg-transparent text-white rounded-md font-bold text-xl hover:bg-red-500">
+    <i class="fas fa-trash-alt"></i>
+</button>
+
+<form id="eliminar-form2" action="{{ route('eliminarFuncio', $funcio->id) }}" method="POST" style="display:none;">
+    @csrf
+    @method('DELETE')  <!-- Esto indica que la solicitud será de tipo DELETE -->
+</form>
+@endcan
 
                         </div>
                     @endforeach
@@ -217,23 +234,41 @@
 
     <script>
         document.querySelectorAll('.hora-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Cambiar el color del botón
-                this.classList.add('bg-red-600', 'text-white');
-                this.classList.remove('bg-white', 'text-gray-600');
-
-                // Obtener la hora, día y ID de la función
-                var hora = this.getAttribute('data-hora');
-                var dia = this.getAttribute('data-dia');
-                var funcioId = this.getAttribute('data-funcio-id');
-
-                // Guardar en sessionStorage
-                sessionStorage.setItem('hora', hora);
-                sessionStorage.setItem('dia', dia);
-                sessionStorage.setItem('funcioId', funcioId);
-            });
+    button.addEventListener('click', function() {
+        // Si algún botón está seleccionado, deseleccionarlo
+        document.querySelectorAll('.hora-btn').forEach(btn => {
+            if (btn !== this) {
+                btn.classList.add('bg-white', 'text-gray-600');
+                btn.classList.remove('bg-red-600', 'text-white');
+            }
         });
+
+        // Alternar el color del botón actual
+        if (this.classList.contains('bg-red-600')) {
+            this.classList.add('bg-white', 'text-gray-600');
+            this.classList.remove('bg-red-600', 'text-white');
+        } else {
+            this.classList.add('bg-red-600', 'text-white');
+            this.classList.remove('bg-white', 'text-gray-600');
+        }
+
+        // Obtener la hora, día y ID de la función
+        var hora = this.getAttribute('data-hora');
+        var dia = this.getAttribute('data-dia');
+        var funcioId = this.getAttribute('data-funcio-id');
+
+        // Guardar en sessionStorage
+        sessionStorage.setItem('hora', hora);
+        sessionStorage.setItem('dia', dia);
+        sessionStorage.setItem('funcioId', funcioId);
+    });
+});
+
+
     </script>
+
+   
+
 
 
 </x-guest-layout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Funcions;
+use App\Models\Pelicules;
 use Illuminate\Http\Request;
 
 class FuncionsController extends Controller
@@ -82,4 +83,80 @@ class FuncionsController extends Controller
     {
         //
     }
+
+
+    public function storeFunction(Request $request)
+    {
+       
+        // Validació del formulari
+        $request->validate([
+            'data' => 'required|string',
+            'hora' => 'required|string',
+            'numSala' => 'required|integer|min:1|max:6',
+        ]);
+    
+        // Recuperar dades del formulari
+        $data = $request->input('data');
+        $hora = $request->input('hora');
+        $numSala = $request->input('numSala');
+        $idPelicula = $request->input('idPelicula');
+    
+        $pelicula = Pelicules::findOrFail($idPelicula);
+    
+        // Verificar si ja existeix una funció amb la mateixa data i sala
+        $existeixSala = Funcions::where('data', $data)
+            ->where('numSala', $numSala)
+            ->exists();
+    
+        if ($existeixSala) {
+            return redirect()->route('infofilms',$pelicula);
+        }
+    
+        // Verificar si ja existeix una funció de la mateixa pel·lícula en la mateixa data
+        $existeixPelicula = Funcions::where('data', $data)
+            ->where('pelicula_id', $idPelicula)
+            ->exists();
+    
+        if ($existeixPelicula) {
+            return redirect()->route('infofilms',$pelicula);
+        }
+    
+        // Crear la nova funció si no existeix cap conflicte
+        Funcions::create([
+            'hora' => $hora,
+            'data' => $data,
+            'numSala' => $numSala,
+            'pelicula_id' => $idPelicula,
+        ]);
+    
+        
+        
+        return redirect()->route('infofilms',$pelicula);
+        
+    }
+
+
+    public function crearFuncio($id){
+        $pelicula = Pelicules::findOrFail($id);
+    
+        return view('crearFuncio',compact('pelicula'));
+    }
+
+
+    public function eliminar($id)
+    {
+        $funcio = Funcions::find($id);
+    
+        if ($funcio) {
+            // Eliminar la película
+            $funcio->delete();
+            return back()->with('success', 'Funcion eliminada con éxito.');
+        }
+    
+        return back()->with('error', 'La Funcion no existe.');
+    }
+    
+
+
+
 }

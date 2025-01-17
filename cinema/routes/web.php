@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EntradesController;
 use App\Http\Controllers\PeliculesController;
+use App\Http\Controllers\FuncionsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeientsController;
@@ -54,7 +55,10 @@ Route::get('/tiquets', [EntradesController::class, 'showEntrades'])->name('tique
 
 Route::delete('/entrades/{id}', [EntradesController::class, 'destroy'])->name('entrades.delete');
 
-Route::get('/crearPelicula', [PeliculesController::class, 'crearPelicula'])->name('crearPelicula');
+Route::get('/crearPelicula', [PeliculesController::class, 'crear'])->name('crearPelicula');
+
+Route::get('/crearFuncio/{id}', [FuncionsController::class, 'crearFuncio'])->name('crearFuncio');
+
 
 
 
@@ -68,6 +72,17 @@ Route::get('/editar-pelicula/{id}', [PeliculesController::class, 'edit'])->name(
 
 
 Route::post('/pelicula/editar/{id}', [PeliculesController::class, 'update'])->name('guardarPeli');
+
+
+Route::get('/afegir-funcio', [FuncionsController::class, 'storeFunction'])->name('funcio.store');
+
+
+Route::delete('/pelicula/{id}', [PeliculesController::class, 'eliminar'])->name('eliminarPelicula');
+
+
+Route::delete('/funcio/{id}', [FuncionsController::class, 'eliminar'])->name('eliminarFuncio');
+
+
 
 
 require __DIR__.'/auth.php';

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelicules;
+use App\Models\Funcions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -142,7 +143,7 @@ class PeliculesController extends Controller
             'url' => $request->url,
         ]);
 
-        return redirect()->route('afegirPelicula')->with('success', 'Pel·lícula afegida correctament.');
+        return redirect('/');
     }
 
 
@@ -180,4 +181,25 @@ class PeliculesController extends Controller
 
     return redirect()->route('infofilms',$pelicula);
 }
+
+
+public function eliminar($id)
+{
+    $pelicula = Pelicules::find($id);
+
+    if ($pelicula) {
+        // Eliminar la película
+        $pelicula->delete();
+        return redirect('/')->with('success', 'Película eliminada con éxito.');
+    }
+
+    return redirect('/')->with('error', 'La película no existe.');
+}
+
+
+
+
+
+
+
 }

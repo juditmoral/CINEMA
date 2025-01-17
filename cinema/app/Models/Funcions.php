@@ -11,6 +11,8 @@ class Funcions extends Model
 
     protected $table ="funcions";
 
+    protected $fillable = ['pelicula_id','data', 'hora', 'numSala'];
+
     public function entrada(){
 
         return $this->hasMany(Entrades::class);

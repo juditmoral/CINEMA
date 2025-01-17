@@ -54,6 +54,7 @@
                     <div class="bg-cover bg-center p-4 rounded shadow-md w-2/3"
                         style="background: url('{{ $seleccionatp->url }}'); background-size: cover; background-repeat: no-repeat; background-blend-mode: overlay; background-color: rgba(0, 0, 0, 0.5);">
                         <div class="flex justify-between items-start text-gray-800">
+                            
                             <!-- Columna izquierda (fila y número) -->
                             <div class="space-y-2 text-white">
                                 <h2 class="text-lg"><strong>{{ __('Fila: ') }}</strong>{{ $seleccionat->fila }}</h2>
@@ -85,6 +86,7 @@
                             <img class="mx-auto" src="data:image/png;base64,{{ $barcodeImage }}" alt="Códi de barres">
 
                             <h2 class="font-bold text-lg text-white mt-4">{{ __('STELLA') }}</h2>
+                             <h2 class="font-bold text-lg text-white mt-4">{{ __('Sala: ') }} {{ $seleccionat->numSala}}</h2>
 
                             <!-- Botón de papelera debajo a la derecha -->
                             <div class="flex justify-end ">
