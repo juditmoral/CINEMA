@@ -6,7 +6,9 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ url('/') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-white hover:text-red-500 transition" />
+                        <div class="w-24 h-24 "> <!-- Ajusta el tamaño aquí -->
+                            @include('components.application-logo')
+                        </div>
                     </a>
                 </div>
 

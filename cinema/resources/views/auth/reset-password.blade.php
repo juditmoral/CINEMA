@@ -1,4 +1,10 @@
 <x-guest-layout>
+
+
+    <div class="absolute top-0 left-0 w-full z-20">
+        @include('layouts.navigation')
+    </div>
+    
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
@@ -14,7 +20,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Contrasenya')" />
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>

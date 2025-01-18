@@ -1,4 +1,10 @@
 <x-guest-layout>
+
+    <div class="absolute top-0 left-0 w-full z-20">
+        @include('layouts.navigation')
+    </div>
+
+    
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
