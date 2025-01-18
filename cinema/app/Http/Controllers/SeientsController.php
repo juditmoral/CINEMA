@@ -102,7 +102,7 @@ class SeientsController extends Controller
 
         $seients = Seients::where('numSala', $sala)->get();
 
-        // Obtenemos los IDs de los asientos ocupados en la misma función (mismo día y hora)
+        
         $llocsOcupats = DB::table('entrades')
             ->where('hora', $hora)
             ->where('funcio_id', $funcio->id)
@@ -116,14 +116,12 @@ class SeientsController extends Controller
 
 
 
-        // Pasar los datos a la vista 'seients'
+        
         return view('seients', compact('peliculaId', 'hora', 'dia', 'funcioId', 'pelicula', 'seients', 'llocsOcupats', 'sala', 'funcio'));
     }
 
 
-    // CompraController.php
-
-    // CompraController.php
+    
 
     public function showCompra(Request $request)
     {

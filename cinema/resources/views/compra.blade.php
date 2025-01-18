@@ -10,12 +10,12 @@
 @endphp
 
 <x-guest-layout>
-    <!-- Navegació -->
+    
     <div class="absolute top-0 left-0 w-full z-20">
         @include('layouts.navigation')
     </div>
 
-    <!-- Cabecera con fondo degradado -->
+    <!-- Capçalera -->
     <div class="w-full min-h-[300px] flex justify-center items-center bg-cover bg-center top-0 mt-0 z-10"
         style="background: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 0.5)), url('{{ asset($pelicula->url) }}'); background-size: cover; background-repeat: no-repeat;">
         <h2 class="text-white font-bold text-6xl">
@@ -24,24 +24,24 @@
     </div>
 
     <div class="mt-8 pl-3">
-        <!-- Título de la película -->
+        <!-- Títul de la pel·licula  -->
         <h2 class="text-white font-bold text-4xl mb-2">
             {{ $pelicula->{'titul_' . $locale} }}
         </h2>
 
-        <!-- Género de la película -->
+        <!-- Gènere de la pel·licula  -->
         <p class="text-gray-400 text-lg mb-2">
             <strong>{{ __('Gènere') }}:</strong> {{ $pelicula->{'genere_' . $locale} }}
         </p>
 
-        <!-- Duración de la película -->
+        <!-- Duració de la pel·licula  -->
         <p class="text-gray-400 text-lg mb-6">
             <strong>{{ __('Duració') }}:</strong> {{ $pelicula->duracio }} min
         </p>
 
-        <!-- Sección con la imagen y compra -->
+        <!-- Secció amb la imatge i compra -->
         <div class="flex justify-between items-start w-full mt-8">
-            <!-- Imagen de la cartelera -->
+           
             <div class="mr-8">
                 <img src="{{ asset($pelicula->url) }}" alt="Poster {{ $pelicula->{'titul_' . $locale} }}"
                     class="w-80 h-auto object-cover rounded-lg">
@@ -64,12 +64,12 @@
 
             </div>
 
-            <!-- Sección de pagar -->
+            <!-- Secció de pagar -->
             <div class="flex w-full items-start justify-between">
-                <!-- Pasos numerados y recuadro gris -->
+                <!-- Passos numerats i recuadre gris -->
                 <div class="w-2/3">
                     <div class="flex items-start gap-6 mb-6">
-                        <!-- Paso 1 -->
+                        <!-- Pas 1 -->
                         <div class="flex items-center ml-5">
                             <div
                                 class="w-8 h-8 bg-gray-200 text-gray-500 font-bold flex justify-center items-center rounded-full">
@@ -81,7 +81,7 @@
                         <!-- Separador -->
                         <div class="w-12 border-t border-gray-500 mt-4"></div>
 
-                        <!-- Paso 2 -->
+                        <!-- Pas 2 -->
                         <div class="flex items-center">
                             <div
                                 class="w-8 h-8 bg-gray-500 text-white font-bold flex justify-center items-center rounded-full">
@@ -93,7 +93,7 @@
                         <!-- Separador -->
                         <div class="w-12 border-t border-gray-500 mt-4"></div>
 
-                        <!-- Paso 3 -->
+                        <!-- Pas 3 -->
                         <div class="flex items-center">
                             <div
                                 class="w-8 h-8 bg-gray-200 text-gray-500 font-bold flex justify-center items-center rounded-full">
@@ -103,9 +103,9 @@
                         </div>
                     </div>
 
-                    <!-- Recuadro gris debajo de los pasos numerados -->
+                    
                     <div class="bg-gray-700 p-4 rounded-lg ml-4">
-                        <!-- Aquí puedes agregar contenido adicional si lo deseas -->
+                        
                         <h4 class="text-white font-bold text-xl">{{ __('Detalls') }}</h4>
 
                         <div class="w-100% border-t border-gray-500 mt-4"></div>
@@ -131,7 +131,7 @@
                                 <select id="month"
                                     class="w-full p-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white">
                                     <option value="" disabled selected>{{ __('mes') }}</option>
-                                    <!-- Opciones de meses -->
+                                   
                                     <option value="01">{{ __('01') }}</option>
                                     <option value="02">{{ __('02') }}</option>
                                     <option value="03">{{ __('03') }}</option>
@@ -150,7 +150,7 @@
                                 <select id="year"
                                     class="w-full p-2 bg-transparent text-white border-0 border-b-2 border-gray-500 focus:outline-none focus:border-white">
                                     <option value="" disabled selected>{{ __('any') }}</option>
-                                    <!-- Opciones de años -->
+                                    
                                     <option value="25">{{ __('25') }}</option>
                                     <option value="26">{{ __('26') }}</option>
                                     <option value="27">{{ __('27') }}</option>
@@ -178,9 +178,9 @@
                     </div>
                 </div>
 
-                <!-- Información de Día, Hora y Total a la derecha -->
+                <!-- Informació de Dia, Hora i Total  -->
                 <div class="flex flex-col items-start space-y-2 w-1/3 ml-24 mt-10">
-                    <!-- Día -->
+                   
                     <div class="text-gray-500 text-lg">
                         <strong>{{ __('Día') }}:</strong>
                     </div>
@@ -190,10 +190,10 @@
                     </div>
                     <div
                         class="text-white font-medium text-sm py-1 px-4 rounded-lg text-center border-2 border-gray-700">
-                        {{ $month }} <!-- Mes en abreviatura -->
+                        {{ $month }} 
                     </div>
 
-                    <!-- Hora -->
+                    
                     <div class="text-gray-500 text-lg mt-4">
                         <strong>{{ __('Hora') }}:</strong>
                     </div>
@@ -201,7 +201,7 @@
                         {{ $hora }}
                     </div>
 
-                    <!-- Total a pagar -->
+                    
                     <div class="text-gray-500 text-lg mt-4">
                         <strong>{{ __('Total') }}:</strong>
                     </div>
@@ -233,19 +233,19 @@
 
 
     function maskCardNumber(input) {
-        // Eliminar cualquier carácter no numérico
+        // Eliminar qualsevol caràcter no numèric
         let value = input.value.replace(/\D/g, '');
 
-        // Aplicar la máscara con espacios entre grupos de 4 dígitos
+       
         if (value.length > 4) value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
 
-        // Actualizar el valor del campo con la máscara
+        
         input.value = value;
     }
 
-    // Validación para asegurarse de que el número de tarjeta tenga 16 dígitos
+    // Validació para asegurar-se de que el numero de tarjeta tingui 16 dígits
     document.getElementById("cardNumber").addEventListener("blur", function() {
-        let cardNumber = this.value.replace(/\D/g, ''); // Eliminar espacios y caracteres no numéricos
+        let cardNumber = this.value.replace(/\D/g, ''); 
 
     });
 
@@ -253,7 +253,7 @@
     document.getElementById("continuarButton").addEventListener("click", function() {
         const name = document.getElementById("name").value.trim();
         const cardNumber = document.getElementById("cardNumber").value.replace(/\D/g,
-        ''); // Eliminar espais i caràcters no numèrics
+        ''); 
         const month = document.getElementById("month").value;
         const year = document.getElementById("year").value;
         const cvv = document.getElementById("cvv").value;

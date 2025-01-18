@@ -190,10 +190,10 @@ public function eliminar($id)
     if ($pelicula) {
         // Eliminar la película
         $pelicula->delete();
-        return redirect('/')->with('success', 'Película eliminada con éxito.');
+        return redirect('/')->with('success', 'Pel·lícula eliminada amb èxit.');
     }
 
-    return redirect('/')->with('error', 'La película no existe.');
+    return redirect('/')->with('error', 'La pel·lícula no exsisteix.');
 }
 
 

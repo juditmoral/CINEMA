@@ -150,10 +150,10 @@ class FuncionsController extends Controller
         if ($funcio) {
             // Eliminar la película
             $funcio->delete();
-            return back()->with('success', 'Funcion eliminada con éxito.');
+            return back()->with('success', 'Funció eliminada amb èxit.');
         }
     
-        return back()->with('error', 'La Funcion no existe.');
+        return back()->with('error', 'La Funció no existeix.');
     }
     
 

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ url('/') }}">
-                        <div class="w-24 h-24 "> <!-- Ajusta el tamaño aquí -->
+                        <div class="w-24 h-24 "> 
                             @include('components.application-logo')
                         </div>
                     </a>

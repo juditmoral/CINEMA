@@ -136,11 +136,11 @@ class EntradesController extends Controller
 
     public function destroy($id)
     {
-        // Buscar la entrada por ID y eliminarla
+        // Buscar la entrada per ID y eliminar-la
         $entrada = Entrades::findOrFail($id);
         $entrada->delete();
 
-        // Redirigir de vuelta con un mensaje de éxito
-        return redirect()->route('tiquets')->with('success', 'Entrada eliminada correctamente');
+        // Redirigir 
+        return redirect()->route('tiquets')->with('success', 'Entrada eliminada correctament');
     }
 }
